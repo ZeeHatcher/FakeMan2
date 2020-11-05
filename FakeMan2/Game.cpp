@@ -242,7 +242,7 @@ void Game::updateMidGame()
 	// Processes keyboard input and checks Player collision with wall. Resets position to edge of wall depending on direction if collide
 	rectangle& playerBounding = player_->getBounding();
 
-	if (key_down(VK_LEFT))
+	if (key_down(LEFT_KEY))
 	{
 		player_->move(-1, 0);
 
@@ -265,7 +265,7 @@ void Game::updateMidGame()
 		}
 	}
 
-	if (key_down(VK_RIGHT))
+	if (key_down(RIGHT_KEY))
 	{
 		player_->move(1, 0);
 
@@ -288,7 +288,7 @@ void Game::updateMidGame()
 		}
 	}
 
-	if (key_down(VK_UP))
+	if (key_down(UP_KEY))
 	{
 		player_->move(0, -1);
 
@@ -311,7 +311,7 @@ void Game::updateMidGame()
 		}
 	}
 
-	if (key_down(VK_DOWN))
+	if (key_down(DOWN_KEY))
 	{
 		player_->move(0, 1);
 
@@ -335,7 +335,7 @@ void Game::updateMidGame()
 	}
 
 	// Key for dropping bombs
-	if (key_typed(VK_SPACE))
+	if (key_typed(SPACE_KEY))
 	{
 		player_->dropBomb(bombs_);
 	}
@@ -344,7 +344,7 @@ void Game::updateMidGame()
 void Game::updatePostGame()
 {
 	// Restart key
-	if (key_typed(VK_R))
+	if (key_typed(R_KEY))
 	{
 		clear();
 		init();
@@ -400,11 +400,11 @@ void Game::draw()
 	// Draw side menu to keep track of score count and ammo count
 	std::stringstream scoreText;
 	scoreText << "Score: " << player_->getScore();
-	draw_text(scoreText.str().c_str(), ColorWhite, (MAP_WIDTH + 1) * TILE_DIM, 1 * TILE_DIM);
+	draw_text(scoreText.str().c_str(), COLOR_WHITE, (MAP_WIDTH + 1) * TILE_DIM, 1 * TILE_DIM);
 
 	std::stringstream ammoText;
 	ammoText << "Ammo: " << player_->getAmmo();
-	draw_text(ammoText.str().c_str(), ColorWhite, (MAP_WIDTH + 1) * TILE_DIM, 2 * TILE_DIM);
+	draw_text(ammoText.str().c_str(), COLOR_WHITE, (MAP_WIDTH + 1) * TILE_DIM, 2 * TILE_DIM);
 
 	// Draws overlay menu to show info on game if Status is PreGame or PostGame
 	if (status_ != Status::MidGame)
@@ -454,8 +454,8 @@ void Game::draw()
 			}
 		}
 		
-		fill_rectangle(ColorBlack, menuBox);
-		draw_rectangle(ColorRed, menuBox);
+		fill_rectangle(COLOR_BLACK, menuBox);
+		draw_rectangle(COLOR_RED, menuBox);
 
 		for (int i = 0; i < texts.size(); i++)
 		{
@@ -463,7 +463,7 @@ void Game::draw()
 			float textX = menuBox.x + 20;
 			float textY = menuBox.y + 20 + 10 * i;
 
-			draw_text(txt, ColorWhite, textX, textY);
+			draw_text(txt, COLOR_WHITE, textX, textY);
 		}
 	}
 }
@@ -527,9 +527,9 @@ void Game::init()
     initMap();
 	initCollectibles();
 	enemies_ = {
-		new Enemy(MAP_WIDTH / 2 * TILE_DIM, MAP_HEIGHT / 2 * TILE_DIM, ColorMagenta, 3, 1),
-		new Enemy(MAP_WIDTH / 2 * TILE_DIM, MAP_HEIGHT / 2 * TILE_DIM, ColorPurple, 2, 2),
-		new Enemy(MAP_WIDTH / 2 * TILE_DIM, MAP_HEIGHT / 2 * TILE_DIM, ColorPurple, 2, 2)
+		new Enemy(MAP_WIDTH / 2 * TILE_DIM, MAP_HEIGHT / 2 * TILE_DIM, COLOR_MAGENTA, 3, 1),
+		new Enemy(MAP_WIDTH / 2 * TILE_DIM, MAP_HEIGHT / 2 * TILE_DIM, COLOR_PURPLE, 2, 2),
+		new Enemy(MAP_WIDTH / 2 * TILE_DIM, MAP_HEIGHT / 2 * TILE_DIM, COLOR_PURPLE, 2, 2)
 	};
 	player_ = new Player();
 	status_ = Status::PreGame;
@@ -614,7 +614,7 @@ void Game::initMap()
 			for (int y = 0; y < cells_[x].size(); y++)
 			{
 				rectangle cellBounding = cells_[x][y]->getBounding();
-				borders_.push_back(new Wall(cellBounding.x, cellBounding.y, ColorBlue));
+				borders_.push_back(new Wall(cellBounding.x, cellBounding.y, COLOR_BLUE));
 			}
 		}
 		// Top and bottom edges of map
@@ -623,10 +623,10 @@ void Game::initMap()
 			rectangle cellBounding;
 
 			cellBounding = (cells_[x].front())->getBounding();
-			borders_.push_back(new Wall(cellBounding.x, cellBounding.y, ColorBlue));
+			borders_.push_back(new Wall(cellBounding.x, cellBounding.y, COLOR_BLUE));
 
 			cellBounding = (cells_[x].back())->getBounding();
-			borders_.push_back(new Wall(cellBounding.x, cellBounding.y, ColorBlue));
+			borders_.push_back(new Wall(cellBounding.x, cellBounding.y, COLOR_BLUE));
 		}
 	}
 

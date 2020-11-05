@@ -33,5 +33,5 @@ private :
 	int actualTimeToNextMove_;
 	int timeToRespawn_;
 	int actualTimeToRespawn_;
-	point2d respawnPos_;
+	point_2d respawnPos_;
 };
