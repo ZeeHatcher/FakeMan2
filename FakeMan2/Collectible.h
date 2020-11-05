@@ -1,7 +1,7 @@
 #pragma once
 #include "CollidableObject.h"
 #include "Player.h"
-#include "SwinGame.h"
+#include "splashkit.h"
 
 class Collectible
 	: public CollidableObject

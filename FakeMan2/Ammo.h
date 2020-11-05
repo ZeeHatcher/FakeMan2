@@ -1,7 +1,7 @@
 #pragma once
 #include "Collectible.h"
 #include "Dimensions.h"
-#include "SwinGame.h"
+#include "splashkit.h"
 
 class Ammo
 	: public Collectible

@@ -4,7 +4,7 @@
 #include "Dimensions.h"
 #include "Direction.h"
 #include "MoveableObject.h"
-#include "SwinGame.h"
+#include "splashkit.h"
 #include "Wall.h"
 
 class Enemy

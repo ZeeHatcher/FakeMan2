@@ -4,7 +4,7 @@
 #include "Bomb.h"
 #include "Dimensions.h"
 #include "MoveableObject.h"
-#include "SwinGame.h"
+#include "splashkit.h"
 
 class Player
 	: public MoveableObject

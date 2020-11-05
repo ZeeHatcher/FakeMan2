@@ -5,7 +5,7 @@
 #include "Dimensions.h"
 #include "DrawableObject.h"
 #include "Explosion.h"
-#include "SwinGame.h"
+#include "splashkit.h"
 #include "Wall.h"
 
 class Bomb

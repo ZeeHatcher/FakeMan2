@@ -1,5 +1,5 @@
 #include <iostream>
-#include "SwinGame.h"
+#include "splashkit.h"
 #include "Game.h"
 #include "GameObjectTest.h"
 
