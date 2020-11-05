@@ -3,7 +3,7 @@
 // Initializes Player object at a specific part of the map
 // Width and height is "TILE_DIM - 2" to prevent collision with edge of walls
 Player::Player()
-	: MoveableObject(10*TILE_DIM+1, 8*TILE_DIM+1, TILE_DIM-2, TILE_DIM-2, ColorYellow, 2)
+	: MoveableObject(10*TILE_DIM+1, 8*TILE_DIM+1, TILE_DIM-2, TILE_DIM-2, COLOR_YELLOW, 2)
 {
 	score_ = 0;
 	ammo_ = 0;
