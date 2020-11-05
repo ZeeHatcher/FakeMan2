@@ -355,7 +355,7 @@ void Game::updatePostGame()
 void Game::updatePreGame()
 {
 	// Start game key
-	if (any_key_pressed())
+	if (key_typed(RETURN_KEY))
 	{
 		status_ = Status::MidGame;
 	}
@@ -427,7 +427,7 @@ void Game::draw()
 					"Touching an Enemy or an Explosion tile will result in a Game Over.",
 					"Good luck and have fun!",
 					"",
-					"Press ANY KEY to start..."
+					"Press the ENTER key to start..."
 				};
 
 				break;
