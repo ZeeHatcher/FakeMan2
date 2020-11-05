@@ -1,7 +1,7 @@
 #include "Menu.h"
 
 Menu::Menu()
-	: DrawableObject(10, 10, 10, 10, ColorGray)
+	: DrawableObject(10, 10, 10, 10, COLOR_GRAY)
 {
 	text_ = "";
 }

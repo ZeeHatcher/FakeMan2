@@ -1,7 +1,7 @@
 #include "Wall.h"
 
 Wall::Wall(float x, float y)
-	: Wall(x, y, ColorGray)
+	: Wall(x, y, COLOR_GRAY)
 {
 }
 
