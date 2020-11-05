@@ -1,11 +1,11 @@
 #include "Player.h"
 
 Player::Player()
-	: MoveableObject(10*TILE_DIM+1, 8*TILE_DIM+1, TILE_DIM-2, TILE_DIM-2, ColorYellow, 2)
+	: MoveableObject(10*TILE_DIM+1, 8*TILE_DIM+1, TILE_DIM-2, TILE_DIM-2, COLOR_YELLOW, 2)
 {
 	score_ = 0;
 	ammo_ = 0;
-	bmp_ = load_bitmap("pacman.png");
+	// bmp_ = load_bitmap("pacman", "pacman.png");
 }
 
 int Player::getAmmo()
