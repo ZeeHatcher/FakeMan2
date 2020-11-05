@@ -1,7 +1,7 @@
 #include "Explosion.h"
 
 Explosion::Explosion(float x, float y)
-	: CollidableObject(x, y, TILE_DIM, TILE_DIM, ColorOrange)
+	: CollidableObject(x, y, TILE_DIM, TILE_DIM, COLOR_ORANGE)
 {
 	actualTimeToDissipate_ = 10;
 }
