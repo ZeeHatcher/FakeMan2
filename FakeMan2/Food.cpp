@@ -1,7 +1,7 @@
 #include "Food.h"
 
 Food::Food(float x, float y)
-	: Collectible(x, y, FOOD_DIM, FOOD_DIM, ColorWhite)
+	: Collectible(x, y, FOOD_DIM, FOOD_DIM, COLOR_WHITE)
 {
 }
 
