@@ -6,9 +6,9 @@ Game::Game()
     initMap();
 	initCollectibles();
 	enemies_ = {
-		new Enemy(MAP_WIDTH / 2 * TILE_DIM, MAP_HEIGHT / 2 * TILE_DIM, ColorMagenta, 3, 1),
-		new Enemy(MAP_WIDTH / 2 * TILE_DIM, MAP_HEIGHT / 2 * TILE_DIM, ColorPurple, 2, 2),
-		new Enemy(MAP_WIDTH / 2 * TILE_DIM, MAP_HEIGHT / 2 * TILE_DIM, ColorPurple, 2, 2)
+		new Enemy(MAP_WIDTH / 2 * TILE_DIM, MAP_HEIGHT / 2 * TILE_DIM, COLOR_MAGENTA, 3, 1),
+		new Enemy(MAP_WIDTH / 2 * TILE_DIM, MAP_HEIGHT / 2 * TILE_DIM, COLOR_PURPLE, 2, 2),
+		new Enemy(MAP_WIDTH / 2 * TILE_DIM, MAP_HEIGHT / 2 * TILE_DIM, COLOR_PURPLE, 2, 2)
 	};
 	player_ = new Player();
 }
@@ -214,7 +214,7 @@ void Game::update()
 	// Player Movement
 	rectangle& playerBounding = player_->getBounding();
 
-	if (key_down(VK_LEFT))
+	if (key_down(LEFT_KEY))
 	{
 		player_->move(-1, 0);
 
@@ -237,7 +237,7 @@ void Game::update()
 		}
 	}
 
-	if (key_down(VK_RIGHT))
+	if (key_down(RIGHT_KEY))
 	{
 		player_->move(1, 0);
 
@@ -260,7 +260,7 @@ void Game::update()
 		}
 	}
 
-	if (key_down(VK_UP))
+	if (key_down(UP_KEY))
 	{
 		player_->move(0, -1);
 
@@ -283,7 +283,7 @@ void Game::update()
 		}
 	}
 
-	if (key_down(VK_DOWN))
+	if (key_down(DOWN_KEY))
 	{
 		player_->move(0, 1);
 
@@ -306,7 +306,7 @@ void Game::update()
 		}
 	}
 
-	if (key_typed(VK_SPACE))
+	if (key_typed(SPACE_KEY))
 	{
 		player_->dropBomb(bombs_);
 	}
@@ -421,7 +421,7 @@ void Game::initMap()
 			for (int y = 0; y < cells_[x].size(); y++)
 			{
 				rectangle cellBounding = cells_[x][y]->getBounding();
-				borders_.push_back(new Wall(cellBounding.x, cellBounding.y, ColorBlue));
+				borders_.push_back(new Wall(cellBounding.x, cellBounding.y, COLOR_BLUE));
 			}
 		}
 		else
@@ -429,10 +429,10 @@ void Game::initMap()
 			rectangle cellBounding;
 
 			cellBounding = (cells_[x].front())->getBounding();
-			borders_.push_back(new Wall(cellBounding.x, cellBounding.y, ColorBlue));
+			borders_.push_back(new Wall(cellBounding.x, cellBounding.y, COLOR_BLUE));
 
 			cellBounding = (cells_[x].back())->getBounding();
-			borders_.push_back(new Wall(cellBounding.x, cellBounding.y, ColorBlue));
+			borders_.push_back(new Wall(cellBounding.x, cellBounding.y, COLOR_BLUE));
 		}
 	}
 
