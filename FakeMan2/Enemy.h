@@ -4,7 +4,7 @@
 #include "Dimensions.h"
 #include "Direction.h"
 #include "MoveableObject.h"
-#include "splashkit.h"
+#include "SwinGame.h"
 #include "Wall.h"
 
 class Enemy
@@ -33,5 +33,5 @@ private :
 	int actualTimeToNextMove_;
 	int timeToRespawn_;
 	int actualTimeToRespawn_;
-	point_2d respawnPos_;
+	point2d respawnPos_;
 };

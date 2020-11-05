@@ -1,7 +1,7 @@
 #pragma once
 #include "GameObject.h"
 #include "Dimensions.h"
-#include "splashkit.h"
+#include "Swingame.h"
 
 class Cell
 	: public GameObject

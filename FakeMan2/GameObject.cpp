@@ -9,6 +9,7 @@ GameObject::GameObject(float x, float y, int32_t width, int32_t height, color co
 	color_ = col;
 }
 
+// Returns the "hitbox" of the object
 rectangle& GameObject::getBounding()
 {
 	return bounding_;

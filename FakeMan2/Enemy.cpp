@@ -1,5 +1,7 @@
 #include "Enemy.h"
 
+// Initializes Enemy at a specific part of the map
+// Width and height is "TILE_DIM - 2" to prevent collision with edge of walls
 Enemy::Enemy(float x, float y, color col, float speed, int timeToNextMove)
 	: MoveableObject(x+1, y+1, TILE_DIM-2, TILE_DIM-2, col, speed)
 {
@@ -11,30 +13,36 @@ Enemy::Enemy(float x, float y, color col, float speed, int timeToNextMove)
 	direction_ = Direction::Null;
 }
 
+// Returns whether the Enemy can change direction
 bool Enemy::canMove()
 {
 	return (actualTimeToNextMove_ == 0);
 }
 
+// Returns whether the Enemy can respawn
 bool Enemy::canRespawn()
 {
 	return (actualTimeToRespawn_ == 0);
 }
 
+// Returns the current move direction of Enemy
 Direction Enemy::getDirection()
 {
 	return direction_;
 }
 
+// Algorithm to choose next direction to move towards
 void Enemy::chooseNextMove(std::vector<Wall*>& borders, std::vector<Wall*>& walls)
 {
+	// 4 initial possible directions
 	std::vector<Direction> directions = { Direction::Up, Direction::Down, Direction::Left, Direction::Right };
-	rectangle origBounding = bounding_;
+	rectangle origBounding = bounding_; // Saves current position of Enemy to reset back later
 
 	for (int i = directions.size() - 1; i >= 0; i--)
 	{
 		bool isOccupied = false;
 
+		// Move a specific direction depending on the 4 initial possible direction
 		switch (directions[i])
 		{
 		case Direction::Up:
@@ -54,6 +62,7 @@ void Enemy::chooseNextMove(std::vector<Wall*>& borders, std::vector<Wall*>& wall
 			break;
 		}
 
+		// Checks if chosen direction collides with a Wall
 		for (int i = 0; i < borders.size(); i++)
 		{
 			if (isOccupied) break;
@@ -76,27 +85,33 @@ void Enemy::chooseNextMove(std::vector<Wall*>& borders, std::vector<Wall*>& wall
 			}
 		}
 
+		// Removes chosen direction from the list of possible directions 
 		if (isOccupied)
 		{
 			directions.erase(directions.begin() + i);
 		}
 
+		// Reset position back to original position to test other directions
 		bounding_ = origBounding;
 	}
 
+	// Choose a random direction from the remaining list of possible directions
 	direction_ = directions[rand() % directions.size()];
 }
 
+// Decrement counter if Enemy cannot change direction yet
 void Enemy::decrementActualTimeToNextMove()
 {
 	actualTimeToNextMove_--;
 }
 
+// Decrement counter if Enemy cannot respawn yet
 void Enemy::decrementActualTimeToRespawn()
 {
 	actualTimeToRespawn_--;
 }
 
+// "Kill" the Enemy if collides with Explosion, and resets position to the original spawn point
 void Enemy::die()
 {
 	alive_ = false;
@@ -109,6 +124,7 @@ void Enemy::draw()
 	fill_rectangle(color_, bounding_);
 }
 
+// Move Enemy depending on current move direction
 void Enemy::move()
 {
 	switch (direction_)
@@ -131,16 +147,19 @@ void Enemy::move()
 	}
 }
 
+// Reset counter to the original amount
 void Enemy::resetActualTimeToNextMove()
 {
 	actualTimeToNextMove_ = timeToNextMove_;
 }
 
+// Respawn Enemy
 void Enemy::respawn()
 {
 	alive_ = true;
 }
 
+// If Enemy collides with Wall, instantly set counter to 0 so they choose next direction to move towards
 void Enemy::skipActualTimeToNextMove()
 {
 	actualTimeToNextMove_ = 0;

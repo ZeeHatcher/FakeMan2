@@ -5,6 +5,7 @@ CollidableObject::CollidableObject(float x, float y, int32_t width, int32_t heig
 {
 }
 
+// Checks collision between 2 CollidableObjects
 bool CollidableObject::isCollide(CollidableObject* ent)
 {
 	return rectangles_intersect(bounding_, ent->bounding_);

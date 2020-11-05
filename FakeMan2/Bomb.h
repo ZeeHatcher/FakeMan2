@@ -5,7 +5,7 @@
 #include "Dimensions.h"
 #include "DrawableObject.h"
 #include "Explosion.h"
-#include "splashkit.h"
+#include "SwinGame.h"
 #include "Wall.h"
 
 class Bomb
@@ -14,7 +14,6 @@ class Bomb
 public :
 	Bomb(float x, float y);
 	bool canExplode();
-	int getActualTimeToExplode();
 	void decrementActualTimeToExplode();
 	void draw();
 	void explode(std::vector<std::vector<Cell*>>& cells, std::vector<Wall*>& walls, std::vector<Explosion*>& explosions);

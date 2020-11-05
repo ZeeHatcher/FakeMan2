@@ -1,5 +1,5 @@
 #pragma once
-#include "splashkit.h"
+#include "SwinGame.h"
 
 class GameObject
 {

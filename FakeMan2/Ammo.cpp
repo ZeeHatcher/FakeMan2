@@ -1,7 +1,7 @@
 #include "Ammo.h"
 
 Ammo::Ammo(float x, float y)
-	: Collectible(x, y, AMMO_DIM, AMMO_DIM, COLOR_PURPLE)
+	: Collectible(x, y, AMMO_DIM, AMMO_DIM, ColorOrange)
 {
 }
 
@@ -12,5 +12,5 @@ void Ammo::collect(Player* player)
 
 void Ammo::draw()
 {
-	draw_rectangle(color_, bounding_);
+	fill_circle(color_, bounding_.x + bounding_.width / 2, bounding_.y + bounding_.height / 2, bounding_.width / 2);
 }

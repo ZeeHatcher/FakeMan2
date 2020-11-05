@@ -1,22 +1,19 @@
 #include "Bomb.h"
 
 Bomb::Bomb(float x, float y)
-	: DrawableObject(x, y, BOMB_DIM, BOMB_DIM, COLOR_RED)
+	: DrawableObject(x, y, BOMB_DIM, BOMB_DIM, ColorRed)
 {
 	actualTimeToExplode_ = 2 * 60;
-	explosionRadius_ = 2 * TILE_DIM;
+	explosionRadius_ = 2 * TILE_DIM; 
 }
 
+// Returns whether the Bomb can explode
 bool Bomb::canExplode()
 {
 	return (actualTimeToExplode_ == 0);
 }
 
-int Bomb::getActualTimeToExplode()
-{
-	return actualTimeToExplode_;
-}
-
+// Decrement counter if Bomb cannot explode yet
 void Bomb::decrementActualTimeToExplode()
 {
 	actualTimeToExplode_--;
@@ -27,8 +24,10 @@ void Bomb::draw()
 	fill_rectangle(color_, bounding_);
 }
 
+// Destroys Wall objects within explosion radius and spawns Explosion objects in that same area
 void Bomb::explode(std::vector<std::vector<Cell*>>& cells, std::vector<Wall*>& walls, std::vector<Explosion*>& explosions)
 {
+	// Finding the Cell that contains the Bomb object
 	rectangle refCellBounding;
 
 	bool refCellFound = false;
@@ -54,10 +53,12 @@ void Bomb::explode(std::vector<std::vector<Cell*>>& cells, std::vector<Wall*>& w
 		}
 	}
 
+	// Checks for Walls within the explosion radius and deletes them from the map
 	for (int i = walls.size() - 1; i >= 0; i--)
 	{
 		rectangle wallBounding = walls[i]->getBounding();
 
+		// Euclidean distance between Wall and Bomb
 		float diff = std::sqrt(
 			pow(wallBounding.x - refCellBounding.x, 2) + pow(wallBounding.y - refCellBounding.y, 2)
 		);
@@ -69,12 +70,14 @@ void Bomb::explode(std::vector<std::vector<Cell*>>& cells, std::vector<Wall*>& w
 		}
 	}
 
+	// Generates Explosion objects within explosion radius
 	for (int x = 0; x < cells.size(); x++)
 	{
 		for (int y = 0; y < cells[x].size(); y++)
 		{
 			rectangle cellBounding = cells[x][y]->getBounding();
 
+			// Euclidean distance between Cell and Bomb
 			float diff = std::sqrt(
 				pow(cellBounding.x - refCellBounding.x, 2) + pow(cellBounding.y - refCellBounding.y, 2)
 			);

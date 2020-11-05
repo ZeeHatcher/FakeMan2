@@ -1,6 +1,6 @@
 #pragma once
 #include "CollidableObject.h"
-#include "splashkit.h"
+#include "SwinGame.h"
 
 class MoveableObject
 	: public CollidableObject

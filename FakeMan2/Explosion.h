@@ -1,7 +1,7 @@
 #pragma once
 #include "CollidableObject.h"
 #include "Dimensions.h"
-#include "splashkit.h"
+#include "SwinGame.h"
 
 class Explosion
 	: public CollidableObject

@@ -1,7 +1,7 @@
 #include "Wall.h"
 
 Wall::Wall(float x, float y)
-	: Wall(x, y, COLOR_GRAY)
+	: Wall(x, y, ColorGray)
 {
 }
 
@@ -13,5 +13,4 @@ Wall::Wall(float x, float y, color clr)
 void Wall::draw()
 {
 	draw_rectangle(color_, bounding_);
-	// draw_rectangle(ColorDarkGray, bounding_);
 }

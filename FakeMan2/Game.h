@@ -1,4 +1,5 @@
 #pragma once
+#include <sstream>
 #include <vector>
 #include "Ammo.h"
 #include "Bomb.h"
@@ -11,7 +12,6 @@
 #include "Explosion.h"
 #include "Food.h"
 #include "GameObject.h"
-#include "Menu.h"
 #include "MoveableObject.h"
 #include "Player.h"
 #include "Status.h"
@@ -30,12 +30,16 @@ public :
 	void draw();
 
 private :
+	void clear();
+	void init();
 	void initCells(int widthSpan, int heightSpan);
 	void initCollectibles();
 	void initMap();
 	void initWalls(int x, int y, int widthSpan, int heightSpan);
+	void updateMidGame();
+	void updatePostGame();
+	void updatePreGame();
 	
-	Menu menu_;
 	Player* player_;
 	Status status_;
 	std::vector<Bomb*> bombs_;

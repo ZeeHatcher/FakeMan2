@@ -4,7 +4,7 @@
 #include "Bomb.h"
 #include "Dimensions.h"
 #include "MoveableObject.h"
-#include "splashkit.h"
+#include "SwinGame.h"
 
 class Player
 	: public MoveableObject
@@ -20,7 +20,6 @@ public :
 	void draw();
 
 private :
-	bitmap bmp_;
 	int score_;
 	int ammo_;
 };
