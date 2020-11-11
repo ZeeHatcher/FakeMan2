@@ -15,4 +15,4 @@ jobs:
         run: bash <(curl -s https://raw.githubusercontent.com/splashkit/skm/master/install-scripts/skm-install.sh)
 
       - name: Build Fakeman2
-        run: bash skm
+        run: ~/.splashkit/skm
