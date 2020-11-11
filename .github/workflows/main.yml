@@ -20,5 +20,8 @@ jobs:
       - name: Investigating file structure 2
         run: ls /home/runner/work/FakeMan2/FakeMan2
 
+      - name: Reload environment variables
+        run: source ~/.bashrc
+
       - name: Build Fakeman2
         run: skm clang++ ./FakeMan2/*.cpp -o .
