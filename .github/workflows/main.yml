@@ -11,8 +11,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install splashkit
+      - name: Install Splashkit Manager
         run: bash <(curl -s https://raw.githubusercontent.com/splashkit/skm/master/install-scripts/skm-install.sh)
 
-      - name: Build Fakeman2
-        run: ~/.splashkit/skm
+      - name: Install Splashkit
+        run: ~/.splashkit/skm linux install
+
+      - name: Build FakeMan2
+        run: ~/.splashkit/skm clang++ ./FakeMan2/*.cpp -o .
