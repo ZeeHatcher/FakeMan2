@@ -15,5 +15,5 @@ jobs:
         run: bash <(curl -s https://raw.githubusercontent.com/splashkit/skm/master/install-scripts/skm-install.sh)
 
       - name: Build Fakeman2
-        run: sudo /home/runner/work/FakeMan2/build.sh
+        run: sudo /home/runner/work/FakeMan2/FakeMan2/build.sh
         shell: bash
