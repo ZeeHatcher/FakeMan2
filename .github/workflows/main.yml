@@ -14,8 +14,5 @@ jobs:
       - name: Install splashkit
         run: bash <(curl -s https://raw.githubusercontent.com/splashkit/skm/master/install-scripts/skm-install.sh)
 
-      - name: Reload environment variables
-        run: bash
-
       - name: Build Fakeman2
-        run: skm clang++ ./FakeMan2/*.cpp -o .
+        run: bash skm
