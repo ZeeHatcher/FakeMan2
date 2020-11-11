@@ -14,6 +14,8 @@ jobs:
       - name: Install splashkit
         run: bash <(curl -s https://raw.githubusercontent.com/splashkit/skm/master/install-scripts/skm-install.sh)
 
-      - name: Build Fakeman2
-        run: ./build.sh
-        shell: bash
+      - name: Investigating file structure
+        run: | 
+        ls /home/runner/work/FakeMan2
+        ls /home/runner/work/FakeMan2/FakeMan2
+
