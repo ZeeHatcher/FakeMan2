@@ -4,7 +4,6 @@
 
 int main()
 {
-
     open_window("FakeMan", WINDOW_WIDTH, WINDOW_HEIGHT);
     // show_swin_game_splash_screen();
 
