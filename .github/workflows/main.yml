@@ -16,8 +16,8 @@ jobs:
 
       - name: Investigating file structure
         run: | 
-        ls /home/runner/work/FakeMan2
-        ls /home/runner/work/FakeMan2/FakeMan2
+        	ls /home/runner/work/FakeMan2
+        	ls /home/runner/work/FakeMan2/FakeMan2
 
       - name: Build Fakeman2
         run: sudo /home/runner/work/FakeMan2/FakeMan2/build.sh
