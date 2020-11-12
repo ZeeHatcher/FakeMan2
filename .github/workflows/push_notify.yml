@@ -2,7 +2,7 @@ name: Slack push notification
 
 on:
   push:
-    branches: [ main, slack-notify-dev ]
+    branches: [ slack-notify-dev ]
   pull_request:
     branches: [ main ]
 
@@ -15,9 +15,4 @@ jobs:
     - name: Slack Notification
       uses: rtCamp/action-slack-notify@master
       env:
-        SLACK_CHANNEL: team_he_she_it
-        SLACK_COLOR: '#3278BD'
-        SLACK_MESSAGE: 'Post Content :rocket:'
-        SLACK_TITLE: Message
-        SLACK_USERNAME: pushBot
         SLACK_WEBHOOK: 'https://hooks.slack.com/services/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'
