@@ -16,4 +16,4 @@ jobs:
         SLACK_MESSAGE: 'New push'
         SLACK_TITLE: 'Message'
         SLACK_USERNAME: 'FakeMan'
-        SLACK_WEBHOOK: 'https://hooks.slack.com/services/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'
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
