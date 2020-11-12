@@ -20,6 +20,11 @@ jobs:
       - name: Build FakeMan2
         run: ~/.splashkit/skm clang++ ./FakeMan2/*.cpp -o FakeMan2.exe
 
+      - name: Copy Source Files into Test
+        run: |
+          cp ./FakeMan2/*.h ./test/
+          cp ./FakeMan2/*.cpp ./test/
+
       - name: Build Unit Tests
         run: ~/.splashkit/skm clang++ ./test/*.cpp -o FakeMan2_test.exe
 

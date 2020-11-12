@@ -1,8 +1,28 @@
-#include "GameObjectTest.h"
+#include <iostream>
+#include "splashkit.h"
+#include "Game.h"
 
 int main()
 {
-  GameObjectTest runner;
+    open_window("FakeMan", WINDOW_WIDTH, WINDOW_HEIGHT);
+    // show_swin_game_splash_screen();
 
-  runner.testAmmoConstructor();
+	// **********
+	// ** Main **
+	// **********
+    Game game;
+    
+    do
+    {
+        process_events();
+        
+        clear_screen(COLOR_BLACK);
+        
+        game.update();
+        game.draw();
+        
+        refresh_screen(60);
+    } while (!quit_requested());
+    
+    return 0;
 }
