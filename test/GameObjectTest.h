@@ -1,6 +1,10 @@
 #pragma once
 #include <iostream>
 #include "Ammo.h"
+#include "Bomb.h"
+#include "Enemy.h"
+#include "Cell.h"
+#include "Explosion.h"
 
 class GameObjectTest
 {

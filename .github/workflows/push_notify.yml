@@ -1,0 +1,19 @@
+name: Slack push notification
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  slackNotification:
+    name: Slack Notification
+    runs-on: ubuntu-latest
+    steps:
+    - name: Slack Notification
+      uses: rtCamp/action-slack-notify@master
+      env:
+        SLACK_CHANNEL: team_he_she_it
+        SLACK_MESSAGE: 'New push, go check it!'
+        SLACK_TITLE: 'Message'
+        SLACK_USERNAME: 'FakeMan'
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
