@@ -21,7 +21,7 @@ jobs:
         run: ~/.splashkit/skm clang++ ./FakeMan2/*.cpp -o FakeMan2.exe
 
       - name: Copy Source Files into Test
-        run: find ./FakeMan2/ ! -name main.cpp -exec cp -t ./test/ {} +
+        run: find ./FakeMan2/* ! -name main.cpp -exec cp -t ./test/ {} +
 
       - name: Build Unit Tests
         run: ~/.splashkit/skm clang++ ./test/*.cpp -o FakeMan2_test.exe
