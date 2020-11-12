@@ -12,4 +12,10 @@ public :
 
 public: 
 	static void testCellConstructor();
+
+public:
+	static void testEnemyConstructor();
+
+public:
+	static void testExplosionConstructor();
 };
