@@ -12,7 +12,7 @@ jobs:
     - name: Slack Notification
       uses: rtCamp/action-slack-notify@master
       env:
-			  SLACK_CHANNEL: team_he_she_it
+        SLACK_CHANNEL: team_he_she_it
         SLACK_MESSAGE: 'New push'
         SLACK_TITLE: 'Message'
         SLACK_USERNAME: 'FakeMan'
