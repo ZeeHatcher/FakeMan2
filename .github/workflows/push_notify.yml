@@ -14,6 +14,6 @@ jobs:
       env:
         SLACK_CHANNEL: team_he_she_it
         SLACK_MESSAGE: 'New push'
-        SLACK_TITLE: 'Message'
+        SLACK_TITLE: 'Post Content :rocket:'
         SLACK_USERNAME: 'FakeMan'
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
