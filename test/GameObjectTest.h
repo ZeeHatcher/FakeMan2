@@ -9,4 +9,7 @@ public :
 
 public :
 	static void testBombConstructor();
+
+public: 
+	static void testCellConstructor();
 };

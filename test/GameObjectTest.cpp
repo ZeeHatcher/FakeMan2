@@ -33,3 +33,20 @@ void GameObjectTest::testBombConstructor()
 		std::cout << "Failed" << std::endl;
 	}
 }
+
+void GameObjectTest::testCellConstructor()
+{
+	std::cout << "testCellConstructor: ";
+
+	try
+	{
+		Cell cell(10, 20);
+		GameObject obj = (GameObject)cell;
+
+		std::cout << "Successful" << std::endl;
+	}
+	catch (...)
+	{
+		std::cout << "Failed" << std::endl;
+	}
+}
