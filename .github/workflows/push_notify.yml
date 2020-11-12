@@ -13,7 +13,7 @@ jobs:
       uses: rtCamp/action-slack-notify@master
       env:
         SLACK_CHANNEL: team_he_she_it
-        SLACK_MESSAGE: 'New push'
-        SLACK_TITLE: 'Post Content :rocket:'
+        SLACK_MESSAGE: 'New push, go check it!'
+        SLACK_TITLE: 'Message'
         SLACK_USERNAME: 'FakeMan'
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
