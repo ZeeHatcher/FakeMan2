@@ -6,4 +6,7 @@ class GameObjectTest
 {
 public :
 	static void testAmmoConstructor();
+
+public :
+	static void testBombConstructor();
 };
