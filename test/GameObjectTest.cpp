@@ -57,7 +57,7 @@ void GameObjectTest::testEnemyConstructor()
 
 	try
 	{
-		Enemy enemy(10, 20, ColorBlack, 1, 2);
+		Enemy enemy(10, 20, COLOR_BLACK, 1, 2);
 		GameObject obj = (GameObject)enemy;
 
 		std::cout << "Successful" << std::endl;
