@@ -7,4 +7,6 @@ int main()
   runner.testAmmoConstructor();
   runner.testBombConstructor();
   runner.testCellConstructor();
+  runner.testEnemyConstructor();
+  runner.testExplosionConstructor();
 }
