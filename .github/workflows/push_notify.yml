@@ -2,7 +2,7 @@ name: Slack push notification
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, slack-notify-dev ]
   pull_request:
     branches: [ main ]
 
