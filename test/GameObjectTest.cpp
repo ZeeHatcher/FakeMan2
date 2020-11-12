@@ -16,3 +16,20 @@ void GameObjectTest::testAmmoConstructor()
 		std::cout << "Failed" << std::endl;
 	}
 }
+
+void GameObjectTest::testBombConstructor()
+{
+	std::cout << "testBombConstructor: ";
+
+	try
+	{
+		Bomb bomb(10, 20);
+		GameObject obj = (GameObject)bomb;
+
+		std::cout << "Successful" << std::endl;
+	}
+	catch (...)
+	{
+		std::cout << "Failed" << std::endl;
+	}
+}
