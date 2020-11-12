@@ -1,9 +1,9 @@
-#include "GameObjectTest.h"
+#include <iostream>
+#include "splashkit.h"
+#include "Game.h"
 
 int main()
 {
-  GameObjectTest runner;
-
   runner.testAmmoConstructor();
   runner.testBombConstructor();
   runner.testCellConstructor();
