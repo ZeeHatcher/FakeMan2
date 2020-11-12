@@ -19,3 +19,9 @@ jobs:
 
       - name: Build FakeMan2
         run: ~/.splashkit/skm clang++ ./FakeMan2/*.cpp -o FakeMan2.exe
+
+      - name: Build Unit Tests
+        run: ~/.splashkit/skm clang++ ./test/*.cpp -o FakeMan2_test.exe
+
+      - name: Run Unit Tests
+        run: ./FakeMan2_test.exe
