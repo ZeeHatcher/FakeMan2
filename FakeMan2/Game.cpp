@@ -216,6 +216,11 @@ void Game::updateMidGame()
 					}
 				}
 
+				if (e->getBounding().x < 0 - TILE_DIM)
+				{
+					e->warp(MAP_WIDTH * TILE_DIM, 14 * TILE_DIM + 1);
+				}
+
 				break;
 
 			case Direction::Right:
@@ -237,6 +242,11 @@ void Game::updateMidGame()
 						e->warp(wallBounding.x - enemyBounding.width - 1, enemyBounding.y);
 						e->skipActualTimeToNextMove();
 					}
+				}
+
+				if (e->getBounding().x > MAP_WIDTH * TILE_DIM)
+				{
+					e->warp(0 - TILE_DIM, 14 * TILE_DIM + 1);
 				}
 
 				break;
@@ -280,6 +290,11 @@ void Game::updateMidGame()
 				player_->warp(wallBounding.x + wallBounding.width + 1, playerBounding.y);
 			}
 		}
+
+		if (player_->getBounding().x < 0 - TILE_DIM)
+		{
+			player_->warp(MAP_WIDTH * TILE_DIM, 14 * TILE_DIM + 1);
+		}
 	}
 
 	if (key_down(RIGHT_KEY))
@@ -302,6 +317,11 @@ void Game::updateMidGame()
 				rectangle wallBounding = walls_[i]->getBounding();
 				player_->warp(wallBounding.x - playerBounding.width - 1, playerBounding.y);
 			}
+		}
+
+		if (player_->getBounding().x > MAP_WIDTH * TILE_DIM)
+		{
+			player_->warp(0 - TILE_DIM, 14 * TILE_DIM + 1);
 		}
 	}
 
@@ -413,6 +433,8 @@ void Game::draw()
 	}
 
 	player_->draw();
+
+	fill_rectangle(COLOR_BLACK, MAP_WIDTH * TILE_DIM, 0, SIDE, WINDOW_HEIGHT);
 
 	// Draw side menu to keep track of score count and ammo count
 	std::stringstream scoreText;
@@ -549,7 +571,8 @@ void Game::init()
 	enemies_ = {
 		new Enemy(spawnX, spawnY, COLOR_MAGENTA, 3, 1),
 		new Enemy(spawnX, spawnY, COLOR_PURPLE, 2, 2),
-		new Enemy(spawnX, spawnY, COLOR_PURPLE, 2, 2)
+		new Enemy(spawnX, spawnY, COLOR_PURPLE, 2, 2),
+		new Enemy(3 * TILE_DIM, 14 * TILE_DIM, COLOR_PURPLE, 2, 2)
 	};
 	player_ = new Player();
 	status_ = Status::PreGame;
