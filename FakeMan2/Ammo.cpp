@@ -1,7 +1,7 @@
 #include "Ammo.h"
 
 Ammo::Ammo(float x, float y)
-	: Collectible(x, y, COLLECTIBLE_DIM, COLLECTIBLE_DIM, COLOR_ORANGE)
+	: Collectible(x, y, COLLECTIBLE_DIM, COLLECTIBLE_DIM, COLOR_CYAN)
 {
 }
 
