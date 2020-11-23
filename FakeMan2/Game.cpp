@@ -670,6 +670,34 @@ void Game::initCollectibles()
 			(MAP_HEIGHT - 8) * TILE_DIM + (TILE_DIM / 2) - (COLLECTIBLE_DIM / 2)
 		)
 	);
+
+	collectibles_.push_back(
+		new Ammo(
+			9 * TILE_DIM + (TILE_DIM / 2) - (COLLECTIBLE_DIM / 2),
+			11 * TILE_DIM + (TILE_DIM / 2) - (COLLECTIBLE_DIM / 2)
+		)
+	);
+
+	collectibles_.push_back(
+		new Ammo(
+			9 * TILE_DIM + (TILE_DIM / 2) - (COLLECTIBLE_DIM / 2),
+			(MAP_HEIGHT - 11) * TILE_DIM + (TILE_DIM / 2) - (COLLECTIBLE_DIM / 2)
+		)
+	);
+
+	collectibles_.push_back(
+		new Ammo(
+			(MAP_WIDTH - 10) * TILE_DIM + (TILE_DIM / 2) - (COLLECTIBLE_DIM / 2),
+			11 * TILE_DIM + (TILE_DIM / 2) - (COLLECTIBLE_DIM / 2)
+		)
+	);
+
+	collectibles_.push_back(
+		new Ammo(
+			(MAP_WIDTH - 10) * TILE_DIM + (TILE_DIM / 2) - (COLLECTIBLE_DIM / 2),
+			(MAP_HEIGHT - 11) * TILE_DIM + (TILE_DIM / 2) - (COLLECTIBLE_DIM / 2)
+		)
+	);
 }
 
 void Game::initMap()
