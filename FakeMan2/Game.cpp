@@ -606,6 +606,34 @@ void Game::initCollectibles()
 				}
 			}
 
+			collectibles_.push_back(
+				new Powerup(
+					TILE_DIM + (cellBounding.width / 2) - (COLLECTIBLE_DIM / 2),
+					3 * TILE_DIM + (cellBounding.height / 2) - (COLLECTIBLE_DIM / 2)
+				)
+			);
+
+			collectibles_.push_back(
+				new Powerup(
+					(MAP_WIDTH - 2) * TILE_DIM + (cellBounding.width / 2) - (COLLECTIBLE_DIM / 2),
+					3 * TILE_DIM + (cellBounding.height / 2) - (COLLECTIBLE_DIM / 2)
+				)
+			);
+
+			collectibles_.push_back(
+				new Powerup(
+					TILE_DIM + (cellBounding.width / 2) - (COLLECTIBLE_DIM / 2),
+					(MAP_HEIGHT - 8) * TILE_DIM + (cellBounding.height / 2) - (COLLECTIBLE_DIM / 2)
+				)
+			);
+
+			collectibles_.push_back(
+				new Powerup(
+					(MAP_WIDTH - 2) * TILE_DIM + (cellBounding.width / 2) - (COLLECTIBLE_DIM / 2),
+					(MAP_HEIGHT - 8) * TILE_DIM + (cellBounding.height / 2) - (COLLECTIBLE_DIM / 2)
+				)
+			);
+
 			if (!isOccupied)
 			{
 				collectibles_.push_back(
