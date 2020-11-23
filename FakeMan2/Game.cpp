@@ -543,10 +543,13 @@ void Game::init()
 	initCells(MAP_WIDTH, MAP_HEIGHT);
     initMap();
 	initCollectibles();
+	int spawnX = MAP_WIDTH / 2 * TILE_DIM - TILE_DIM / 2;
+	int spawnY = 11 * TILE_DIM;
+
 	enemies_ = {
-		new Enemy(MAP_WIDTH / 2 * TILE_DIM, MAP_HEIGHT / 2 * TILE_DIM, COLOR_MAGENTA, 3, 1),
-		new Enemy(MAP_WIDTH / 2 * TILE_DIM, MAP_HEIGHT / 2 * TILE_DIM, COLOR_PURPLE, 2, 2),
-		new Enemy(MAP_WIDTH / 2 * TILE_DIM, MAP_HEIGHT / 2 * TILE_DIM, COLOR_PURPLE, 2, 2)
+		new Enemy(spawnX, spawnY, COLOR_MAGENTA, 3, 1),
+		new Enemy(spawnX, spawnY, COLOR_PURPLE, 2, 2),
+		new Enemy(spawnX, spawnY, COLOR_PURPLE, 2, 2)
 	};
 	player_ = new Player();
 	status_ = Status::PreGame;
@@ -591,30 +594,26 @@ void Game::initCollectibles()
 
 			if (!isOccupied)
 			{
-				// Spawns Powerups instead of Food on the four corners of the map
-				if (
-					(x == 1 && y == 1) ||
-					(x == maxPlayableX - 1 && y == 1) ||
-					(x == 1 && y == maxPlayableY - 1) ||
-					(x == maxPlayableX - 1 && y == maxPlayableY - 1)
-				)
+				for (int n = 0; n < borders_.size(); n++)
 				{
-					collectibles_.push_back(
-						new Powerup(
-							cellBounding.x + (cellBounding.width / 2) - (COLLECTIBLE_DIM / 2),
-							cellBounding.y + (cellBounding.height / 2) - (COLLECTIBLE_DIM / 2)
-						)
-					);
+					rectangle wallBounding = borders_[n]->getBounding();
+
+					if (cellBounding.x == wallBounding.x && cellBounding.y == wallBounding.y)
+					{
+						isOccupied = true;
+						break;
+					}
 				}
-				else
-				{
-					collectibles_.push_back(
-						new Food(
-							cellBounding.x + (cellBounding.width / 2) - (FOOD_DIM / 2),
-							cellBounding.y + (cellBounding.height / 2) - (FOOD_DIM / 2)
-						)
-					);
-				}
+			}
+
+			if (!isOccupied)
+			{
+				collectibles_.push_back(
+					new Food(
+						cellBounding.x + (cellBounding.width / 2) - (FOOD_DIM / 2),
+						cellBounding.y + (cellBounding.height / 2) - (FOOD_DIM / 2)
+					)
+				);
 			}
 		}
 	}
@@ -622,43 +621,42 @@ void Game::initCollectibles()
 
 void Game::initMap()
 {
-    // Initialize "indestructible" borders to contain the Player and Enemies
-	for (int x = 0; x < cells_.size(); x++)
-	{
-		// Left and right edges of map
-		if (x == 0 || x == cells_.size() - 1)
-		{
-			for (int y = 0; y < cells_[x].size(); y++)
-			{
-				rectangle cellBounding = cells_[x][y]->getBounding();
-				borders_.push_back(new Wall(cellBounding.x, cellBounding.y, COLOR_BLUE));
-			}
-		}
-		// Top and bottom edges of map
-		else
-		{
-			rectangle cellBounding;
+	// Init "indestructible" border walls
+	// Top half
+	initBorders(0, 0, MAP_WIDTH / 2 - 1, 0);
+	initBorders(0, 1, 0, 7);
+	initBorders(13, 1, 0, 3);
+	initBorders(0, 9, 5, 4);
 
-			cellBounding = (cells_[x].front())->getBounding();
-			borders_.push_back(new Wall(cellBounding.x, cellBounding.y, COLOR_BLUE));
+	// Bottom half
+	initBorders(0, MAP_HEIGHT - 1, MAP_WIDTH / 2 - 1, 0);
+	initBorders(1, MAP_HEIGHT - 7, 1, 1);
+	initBorders(0, MAP_HEIGHT - 11, 0, 9);
+	initBorders(0, MAP_HEIGHT - 16, 5, 4);
 
-			cellBounding = (cells_[x].back())->getBounding();
-			borders_.push_back(new Wall(cellBounding.x, cellBounding.y, COLOR_BLUE));
-		}
-	}
+	initWalls(10, 12, 7, 4);
 
-    // Init "destructible" walls as obstacles
-	initWalls(9, 5, 1, 0);
-	initWalls(9, 7, 1, 0);
-	initWalls(7, 2, 0, 8);
-	initWalls(10, 1, 0, 2);
-	initWalls(10, 9, 0, 2);
+	// Init "destructible" walls
+	// Top half
+	initWalls(2, 2, 3, 2);
+	initWalls(7, 2, 4, 2);
+	initWalls(2, 6, 3, 1);
+	initWalls(7, 6, 1, 7);
+	initWalls(10, 6, 3, 1);
+	initWalls(13, 8, 0, 2);
+	initWalls(9, 9, 2, 1);
 
-	initWalls(2, 2, 4, 0);
-	initWalls(1, 4, 4, 0);
-	initWalls(2, 6, 4, 0);
-	initWalls(1, 8, 4, 0);
-	initWalls(2, 10, 4, 0);
+	// Bottom half
+	initWalls(2, MAP_HEIGHT - 4, 9, 1);
+	initWalls(13, MAP_HEIGHT - 5, 0, 2);
+	initWalls(7, MAP_HEIGHT - 7, 1, 2);
+	initWalls(10, MAP_HEIGHT - 7, 3, 1);
+	initWalls(4, MAP_HEIGHT - 8, 1, 2);
+	initWalls(2, MAP_HEIGHT - 10, 3, 1);
+	initWalls(7, MAP_HEIGHT - 10, 4, 1);
+	initWalls(10, MAP_HEIGHT - 13, 3, 1);
+	initWalls(13, MAP_HEIGHT - 11, 0, 2);
+	initWalls(7, MAP_HEIGHT - 16, 1, 4);
 }
 
 // Convenient function to ease the creation of entire lines of Wall objects
@@ -683,6 +681,33 @@ void Game::initWalls(int x, int y, int widthSpan, int heightSpan)
 		{
 			rectangle cellBounding = cells_[n][m]->getBounding();
 			walls_.push_back(new Wall(cellBounding.x, cellBounding.y));	
+		}
+	}
+}
+
+
+// Convenient function to ease the creation of entire lines of Wall objects
+void Game::initBorders(int x, int y, int widthSpan, int heightSpan)
+{
+	for (int n = x; n < x + widthSpan + 1; n++)
+	{
+		if (n >= cells_.size()) break;
+
+		for (int m = y; m < y + heightSpan + 1; m++)
+		{
+			if (m >= cells_[n].size()) break;
+
+			rectangle cellBounding = cells_[n][m]->getBounding();
+			borders_.push_back(new Wall(cellBounding.x, cellBounding.y, COLOR_BLUE));
+		}
+	}
+
+	for (int n = cells_.size() - x - 1; n > cells_.size() - x - widthSpan - 2; n--)
+	{
+		for (int m = y; m < y + heightSpan + 1; m++)
+		{
+			rectangle cellBounding = cells_[n][m]->getBounding();
+			borders_.push_back(new Wall(cellBounding.x, cellBounding.y, COLOR_BLUE));
 		}
 	}
 }
