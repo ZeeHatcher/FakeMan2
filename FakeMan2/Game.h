@@ -36,6 +36,7 @@ private :
 	void initCells(int widthSpan, int heightSpan);
 	void initCollectibles();
 	void initMap();
+	void initBorders(int x, int y, int widthSpan, int heightSpan);
 	void initWalls(int x, int y, int widthSpan, int heightSpan);
 	void updateMidGame();
 	void updatePostGame();
