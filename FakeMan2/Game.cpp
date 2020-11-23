@@ -68,12 +68,29 @@ void Game::updateMidGame()
 	}
 
 	// Kills Player if it collides with Enemy
+	// or if the Player is "immortal", kill the Enemy
 	for (int i = 0; i < enemies_.size(); i++)
 	{
 		if (player_->isCollide(enemies_[i]))
 		{
-			player_->die();
+			if (player_->immortal())
+			{
+				enemies_[i]->die();
+			}
+			else
+			{
+				player_->die();
+			}
 		}
+	}
+
+	if (player_->immortal())
+	{
+		player_->decrementTimeImmortal();
+	}
+	else
+	{
+		player_->deimmortalize();
 	}
 
 	// Update bombs
@@ -574,7 +591,7 @@ void Game::initCollectibles()
 
 			if (!isOccupied)
 			{
-				// Spawns Ammo instead of Food on the four corners of the map
+				// Spawns Powerups instead of Food on the four corners of the map
 				if (
 					(x == 1 && y == 1) ||
 					(x == maxPlayableX - 1 && y == 1) ||
@@ -583,9 +600,9 @@ void Game::initCollectibles()
 				)
 				{
 					collectibles_.push_back(
-						new Ammo(
-							cellBounding.x + (cellBounding.width / 2) - (AMMO_DIM / 2),
-							cellBounding.y + (cellBounding.height / 2) - (AMMO_DIM / 2)
+						new Powerup(
+							cellBounding.x + (cellBounding.width / 2) - (COLLECTIBLE_DIM / 2),
+							cellBounding.y + (cellBounding.height / 2) - (COLLECTIBLE_DIM / 2)
 						)
 					);
 				}

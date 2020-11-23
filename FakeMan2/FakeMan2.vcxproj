@@ -34,6 +34,7 @@
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="MoveableObject.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Powerup.cpp" />
     <ClCompile Include="Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -53,6 +54,7 @@
     <ClInclude Include="Menu.h" />
     <ClInclude Include="MoveableObject.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Powerup.h" />
     <ClInclude Include="Status.h" />
     <ClInclude Include="Wall.h" />
   </ItemGroup>
