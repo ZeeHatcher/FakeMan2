@@ -571,8 +571,7 @@ void Game::init()
 	enemies_ = {
 		new Enemy(spawnX, spawnY, COLOR_MAGENTA, 3, 1),
 		new Enemy(spawnX, spawnY, COLOR_PURPLE, 2, 2),
-		new Enemy(spawnX, spawnY, COLOR_PURPLE, 2, 2),
-		new Enemy(3 * TILE_DIM, 14 * TILE_DIM, COLOR_PURPLE, 2, 2)
+		new Enemy(spawnX, spawnY, COLOR_PURPLE, 2, 2)
 	};
 	player_ = new Player();
 	status_ = Status::PreGame;
