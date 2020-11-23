@@ -291,7 +291,7 @@ void Game::updateMidGame()
 			}
 		}
 
-		if (player_->getBounding().x < 0 - TILE_DIM)
+		if (playerBounding.x < 0 - TILE_DIM)
 		{
 			player_->warp(MAP_WIDTH * TILE_DIM, 14 * TILE_DIM + 1);
 		}
@@ -319,7 +319,7 @@ void Game::updateMidGame()
 			}
 		}
 
-		if (player_->getBounding().x > MAP_WIDTH * TILE_DIM)
+		if (playerBounding.x > MAP_WIDTH * TILE_DIM)
 		{
 			player_->warp(0 - TILE_DIM, 14 * TILE_DIM + 1);
 		}
@@ -374,7 +374,10 @@ void Game::updateMidGame()
 	// Key for dropping bombs
 	if (key_typed(SPACE_KEY))
 	{
-		player_->dropBomb(bombs_);
+		if (playerBounding.x > 0 && playerBounding.x < MAP_WIDTH * TILE_DIM - TILE_DIM / 2)
+		{
+			player_->dropBomb(bombs_);
+		}
 	}
 }
 
@@ -628,34 +631,6 @@ void Game::initCollectibles()
 				}
 			}
 
-			collectibles_.push_back(
-				new Powerup(
-					TILE_DIM + (cellBounding.width / 2) - (COLLECTIBLE_DIM / 2),
-					3 * TILE_DIM + (cellBounding.height / 2) - (COLLECTIBLE_DIM / 2)
-				)
-			);
-
-			collectibles_.push_back(
-				new Powerup(
-					(MAP_WIDTH - 2) * TILE_DIM + (cellBounding.width / 2) - (COLLECTIBLE_DIM / 2),
-					3 * TILE_DIM + (cellBounding.height / 2) - (COLLECTIBLE_DIM / 2)
-				)
-			);
-
-			collectibles_.push_back(
-				new Powerup(
-					TILE_DIM + (cellBounding.width / 2) - (COLLECTIBLE_DIM / 2),
-					(MAP_HEIGHT - 8) * TILE_DIM + (cellBounding.height / 2) - (COLLECTIBLE_DIM / 2)
-				)
-			);
-
-			collectibles_.push_back(
-				new Powerup(
-					(MAP_WIDTH - 2) * TILE_DIM + (cellBounding.width / 2) - (COLLECTIBLE_DIM / 2),
-					(MAP_HEIGHT - 8) * TILE_DIM + (cellBounding.height / 2) - (COLLECTIBLE_DIM / 2)
-				)
-			);
-
 			if (!isOccupied)
 			{
 				collectibles_.push_back(
@@ -667,6 +642,34 @@ void Game::initCollectibles()
 			}
 		}
 	}
+
+	collectibles_.push_back(
+		new Powerup(
+			TILE_DIM + (TILE_DIM / 2) - (COLLECTIBLE_DIM / 2),
+			3 * TILE_DIM + (TILE_DIM / 2) - (COLLECTIBLE_DIM / 2)
+		)
+	);
+
+	collectibles_.push_back(
+		new Powerup(
+			(MAP_WIDTH - 2) * TILE_DIM + (TILE_DIM / 2) - (COLLECTIBLE_DIM / 2),
+			3 * TILE_DIM + (TILE_DIM / 2) - (COLLECTIBLE_DIM / 2)
+		)
+	);
+
+	collectibles_.push_back(
+		new Powerup(
+			TILE_DIM + (TILE_DIM / 2) - (COLLECTIBLE_DIM / 2),
+			(MAP_HEIGHT - 8) * TILE_DIM + (TILE_DIM / 2) - (COLLECTIBLE_DIM / 2)
+		)
+	);
+
+	collectibles_.push_back(
+		new Powerup(
+			(MAP_WIDTH - 2) * TILE_DIM + (TILE_DIM / 2) - (COLLECTIBLE_DIM / 2),
+			(MAP_HEIGHT - 8) * TILE_DIM + (TILE_DIM / 2) - (COLLECTIBLE_DIM / 2)
+		)
+	);
 }
 
 void Game::initMap()

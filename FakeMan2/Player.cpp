@@ -6,7 +6,7 @@ Player::Player()
 	: MoveableObject(MAP_WIDTH / 2 * TILE_DIM - TILE_DIM / 2, 17 * TILE_DIM + 1, TILE_DIM - 2, TILE_DIM - 2, COLOR_YELLOW, 2)
 {
 	score_ = 0;
-	ammo_ = 0;
+	ammo_ = 3;
 	timeImmortal_ = false;
 }
 

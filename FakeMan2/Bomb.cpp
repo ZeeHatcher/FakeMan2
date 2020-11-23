@@ -4,7 +4,7 @@ Bomb::Bomb(float x, float y)
 	: DrawableObject(x, y, BOMB_DIM, BOMB_DIM, COLOR_RED)
 {
 	actualTimeToExplode_ = 2 * 60;
-	explosionRadius_ = 2 * TILE_DIM; 
+	explosionRadius_ = 3 * TILE_DIM; 
 }
 
 // Returns whether the Bomb can explode
