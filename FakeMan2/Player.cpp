@@ -7,6 +7,13 @@ Player::Player()
 {
 	score_ = 0;
 	ammo_ = 0;
+	timeImmortal_ = false;
+}
+
+// Returns the immortal state of Player
+bool Player::immortal()
+{
+	return (timeImmortal_ > 0);
 }
 
 // Returns current ammo count of Player
@@ -19,6 +26,22 @@ int Player::getAmmo()
 int Player::getScore()
 {
 	return score_;
+}
+
+void Player::decrementTimeImmortal()
+{
+	timeImmortal_--;
+}
+
+void Player::deimmortalize()
+{
+	color_ = COLOR_YELLOW;
+}
+
+void Player::immortalize()
+{
+	color_ = COLOR_WHITE;
+	timeImmortal_ = 5 * 60;
 }
 
 // Increment ammo when Ammo object is collected

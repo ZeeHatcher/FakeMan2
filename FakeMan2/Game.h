@@ -14,6 +14,7 @@
 #include "GameObject.h"
 #include "MoveableObject.h"
 #include "Player.h"
+#include "Powerup.h"
 #include "Status.h"
 #include "Wall.h"
 

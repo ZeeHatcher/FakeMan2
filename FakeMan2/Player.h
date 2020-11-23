@@ -11,8 +11,12 @@ class Player
 {
 public :
 	Player();
+	bool immortal();
 	int getAmmo();
 	int getScore();
+	void decrementTimeImmortal();
+	void deimmortalize();
+	void immortalize();
 	void incrementAmmo();
 	void incrementScore();
 	void dropBomb(std::vector<Bomb*>& bombs);
@@ -22,4 +26,5 @@ public :
 private :
 	int score_;
 	int ammo_;
+	int timeImmortal_;
 };
