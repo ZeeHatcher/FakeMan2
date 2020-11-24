@@ -20,5 +20,7 @@ void Explosion::decrementActualTimeToDissipate()
 
 void Explosion::draw()
 {
-	fill_rectangle(color_, bounding_);
+	/*fill_rectangle(color_, bounding_);*/
+	load_bitmap("explosion", "Resources/explosion.png");
+	draw_bitmap("explosion", bounding_.x-20, bounding_.y-20);
 }

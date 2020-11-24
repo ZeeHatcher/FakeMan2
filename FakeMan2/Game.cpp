@@ -271,6 +271,7 @@ void Game::updateMidGame()
 
 	if (key_down(LEFT_KEY))
 	{
+		player_->moveLeft();
 		player_->move(-1, 0);
 
 		for (int i = 0; i < borders_.size(); i++)
@@ -299,6 +300,7 @@ void Game::updateMidGame()
 
 	if (key_down(RIGHT_KEY))
 	{
+		player_->moveRight();
 		player_->move(1, 0);
 
 		for (int i = 0; i < borders_.size(); i++)
@@ -327,6 +329,7 @@ void Game::updateMidGame()
 
 	if (key_down(UP_KEY))
 	{
+		player_->moveUp();
 		player_->move(0, -1);
 
 		for (int i = 0; i < borders_.size(); i++)
@@ -350,6 +353,7 @@ void Game::updateMidGame()
 
 	if (key_down(DOWN_KEY))
 	{
+		player_->moveDown();
 		player_->move(0, 1);
 
 		for (int i = 0; i < borders_.size(); i++)
@@ -412,7 +416,7 @@ void Game::draw()
 
     for (int i = 0; i < borders_.size(); i++)
     {
-        borders_[i]->draw();
+        borders_[i]->drawbdr();
     }
 
 	for (int i = 0; i < walls_.size(); i++)
@@ -420,9 +424,13 @@ void Game::draw()
 		walls_[i]->draw();
 	}
 
-	for (int i = 0; i < explosions_.size(); i++)
+	/*for (int i = 0; i < explosions_.size(); i++)
 	{
 		explosions_[i]->draw();
+	}*/
+
+	if (explosions_.size() > 1) {
+		explosions_[0]->draw();
 	}
 
 	for (int i = 0; i < bombs_.size(); i++)
@@ -436,6 +444,7 @@ void Game::draw()
 	}
 
 	player_->draw();
+	player_->updateAnim();
 
 	fill_rectangle(COLOR_BLACK, MAP_WIDTH * TILE_DIM, 0, SIDE, WINDOW_HEIGHT);
 

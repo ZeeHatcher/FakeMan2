@@ -22,9 +22,18 @@ public :
 	void dropBomb(std::vector<Bomb*>& bombs);
 	void die();
 	void draw();
+	void moveRight();
+	void moveUp();
+	void moveLeft();
+	void moveDown();
+	void updateAnim();
 
 private :
 	int score_;
 	int ammo_;
 	int timeImmortal_;
+	animation animation_;
+	drawing_options opts_;
+	animation_script script_;
+	bitmap sprites_;
 };

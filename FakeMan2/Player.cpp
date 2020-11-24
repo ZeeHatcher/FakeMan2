@@ -8,6 +8,11 @@ Player::Player()
 	score_ = 0;
 	ammo_ = 1;
 	timeImmortal_ = false;
+	sprites_ = load_bitmap("pacman", "Resources/pac_sprite.png");
+	bitmap_set_cell_details(sprites_, 15, 15, 12, 1, 12);
+	script_ = load_animation_script("Pacman", "pac_sprites.txt");
+	animation_ = create_animation(script_, "walk left");
+	opts_ = option_with_animation(animation_);
 }
 
 // Returns the immortal state of Player
@@ -90,5 +95,34 @@ void Player::die()
 
 void Player::draw()
 {
-	fill_rectangle(color_, bounding_);
+	/*fill_rectangle(color_, bounding_);*/
+	draw_bitmap(sprites_, bounding_.x, bounding_.y, opts_);
+}
+
+void Player::updateAnim() {
+	update_animation(animation_);
+}
+
+void Player::moveUp() {
+	if (animation_name(animation_) != "walk up") {
+		assign_animation(animation_, "walk up");
+	}
+}
+
+void Player::moveLeft() {
+	if (animation_name(animation_) != "walk left") {
+		assign_animation(animation_, "walk left");
+	}
+}
+
+void Player::moveDown() {
+	if (animation_name(animation_) != "walk down") {
+		assign_animation(animation_, "walk down");
+	}
+}
+
+void Player::moveRight() {
+	if (animation_name(animation_) != "walk right") {
+		assign_animation(animation_, "walk right");
+	}
 }

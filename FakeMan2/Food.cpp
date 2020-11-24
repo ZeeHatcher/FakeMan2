@@ -13,5 +13,7 @@ void Food::collect(Player* player)
 
 void Food::draw()
 {
-	fill_circle(color_, bounding_.x + bounding_.width / 2, bounding_.y + bounding_.height / 2, bounding_.width / 2);
+	//fill_circle(color_, bounding_.x + bounding_.width / 2, bounding_.y + bounding_.height / 2, bounding_.width / 2);
+	load_bitmap("food", "Resources/dia.png");
+	draw_bitmap("food", bounding_.x-5, bounding_.y-5);
 }

@@ -121,7 +121,15 @@ void Enemy::die()
 
 void Enemy::draw()
 {
-	fill_rectangle(color_, bounding_);
+	//fill_rectangle(color_, bounding_);
+	load_bitmap("enemy1", "Resources/enemy1.png");
+	load_bitmap("enemy2", "Resources/enemy2.png");
+	if (speed_ > 2) {
+		draw_bitmap("enemy1", bounding_.x, bounding_.y);
+	}
+	else {
+		draw_bitmap("enemy2", bounding_.x, bounding_.y);
+	}
 }
 
 // Move Enemy depending on current move direction
