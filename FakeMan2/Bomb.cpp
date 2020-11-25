@@ -21,16 +21,16 @@ void Bomb::decrementActualTimeToExplode()
 
 void Bomb::draw()
 {
-	if (actualTimeToExplode_<120) {
+	/*if (actualTimeToExplode_<120) {*/
 		/*Display an icon showing the the button has been clicked
 		* when the count down has started
 		suggesting that the player has detonated the bomb*/
-		bitmap_ = load_bitmap("detonate", "Resources/detonate.png");
-	}
-	/*Display an icon showing the the button that has not been clicked*/
-	bitmap_= load_bitmap("detonator", "Resources/detonator.png");
+	load_bitmap("detonate", "Resources/detonate.png");
+	//}
+	///*Display an icon showing the the button that has not been clicked*/
+	//bitmap_= load_bitmap("detonator", "Resources/detonator.png");
 	
-	draw_bitmap(bitmap_, bounding_.x - 5, bounding_.y - 5);
+	draw_bitmap("detonate", bounding_.x - 5, bounding_.y - 5);
 }
 
 // Destroys Wall objects within explosion radius and spawns Explosion objects in that same area

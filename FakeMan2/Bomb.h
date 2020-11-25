@@ -21,5 +21,4 @@ public :
 private :
 	int actualTimeToExplode_;
 	int explosionRadius_;
-	bitmap bitmap_;
 };
