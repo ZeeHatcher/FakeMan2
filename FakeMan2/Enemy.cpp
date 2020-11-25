@@ -122,8 +122,13 @@ void Enemy::die()
 void Enemy::draw()
 {
 	//fill_rectangle(color_, bounding_);
+
+	/*Since there is an enemy that moves faster,
+	a different bitmap would be used*/
 	load_bitmap("enemy1", "Resources/enemy1.png");
 	load_bitmap("enemy2", "Resources/enemy2.png");
+	
+	/*The bitmap used would be determined based on the enemy's speed*/
 	if (speed_ > 2) {
 		draw_bitmap("enemy1", bounding_.x, bounding_.y);
 	}

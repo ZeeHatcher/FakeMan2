@@ -8,10 +8,20 @@ Player::Player()
 	score_ = 0;
 	ammo_ = 1;
 	timeImmortal_ = false;
-	sprites_ = load_bitmap("pacman", "Resources/pac_sprite.png");
-	bitmap_set_cell_details(sprites_, 15, 15, 12, 1, 12);
+
+	//Load the sprites sheet for the pac man's different movements
+	sprites_ = load_bitmap("pacman", "Resources/spritesheet.png");
+
+	//separate the sprite sheet into 12 icons based on the scale
+	bitmap_set_cell_details(sprites_, 14, 14, 24, 1, 24);
+
+	//Load the animation script
 	script_ = load_animation_script("Pacman", "pac_sprites.txt");
+
+	//Initially, the animation for left waking would be set
 	animation_ = create_animation(script_, "walk left");
+
+	//Link the bitmap with the animation
 	opts_ = option_with_animation(animation_);
 }
 
@@ -100,29 +110,71 @@ void Player::draw()
 }
 
 void Player::updateAnim() {
+	/*function called to update the animation after specific intervals*/
 	update_animation(animation_);
 }
 
 void Player::moveUp() {
-	if (animation_name(animation_) != "walk up") {
-		assign_animation(animation_, "walk up");
+	//Load the animation labeled walk up in the animation script
+	if (immortal()) {
+		if (animation_name(animation_) != "p walk up") {
+			assign_animation(animation_, "p walk up");
+		}
+	}
+	else {
+		if (animation_name(animation_) != "walk up") {
+			assign_animation(animation_, "walk up");
+		}
 	}
 }
 
 void Player::moveLeft() {
-	if (animation_name(animation_) != "walk left") {
+	//Load the animation labeled walk left in the animation script
+	/*if (animation_name(animation_) != "walk left") {
 		assign_animation(animation_, "walk left");
+	}*/
+	if (immortal()) {
+		if (animation_name(animation_) != "p walk left") {
+			assign_animation(animation_, "p walk left");
+		}
+	}
+	else {
+		if (animation_name(animation_) != "walk left") {
+			assign_animation(animation_, "walk left");
+		}
 	}
 }
 
 void Player::moveDown() {
-	if (animation_name(animation_) != "walk down") {
+	//Load the animation labeled walk down in the animation script
+	/*if (animation_name(animation_) != "walk down") {
 		assign_animation(animation_, "walk down");
+	}*/
+	if (immortal()) {
+		if (animation_name(animation_) != "p walk down") {
+			assign_animation(animation_, "p walk down");
+		}
+	}
+	else {
+		if (animation_name(animation_) != "walk down") {
+			assign_animation(animation_, "walk down");
+		}
 	}
 }
 
 void Player::moveRight() {
-	if (animation_name(animation_) != "walk right") {
+	//Load the animation labeled walk right in the animation script
+	/*if (animation_name(animation_) != "walk right") {
 		assign_animation(animation_, "walk right");
+	}*/
+	if (immortal()) {
+		if (animation_name(animation_) != "p walk right") {
+			assign_animation(animation_, "p walk right");
+		}
+	}
+	else {
+		if (animation_name(animation_) != "walk right") {
+			assign_animation(animation_, "walk right");
+		}
 	}
 }

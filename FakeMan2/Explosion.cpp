@@ -22,5 +22,5 @@ void Explosion::draw()
 {
 	/*fill_rectangle(color_, bounding_);*/
 	load_bitmap("explosion", "Resources/explosion.png");
-	draw_bitmap("explosion", bounding_.x-20, bounding_.y-20);
+	draw_bitmap("explosion", bounding_.x-30, bounding_.y-15);
 }

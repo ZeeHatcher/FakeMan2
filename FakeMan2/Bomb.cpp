@@ -16,23 +16,18 @@ bool Bomb::canExplode()
 // Decrement counter if Bomb cannot explode yet
 void Bomb::decrementActualTimeToExplode()
 {
-	/*draw_bitmap_on_bitmap*/
-	//draw_bitmap_on_bitmap(bitmap_,det, bounding_.x - 10, bounding_.y - 10);
 	actualTimeToExplode_--;
 }
 
 void Bomb::draw()
 {
-	//fill_rectangle(color_, bounding_);
-	/*bitmap_ = load_bitmap("bomb", "Resources/bomb.png");
-	bitmap det = load_bitmap("det", "Resources/det.png");*/
-	
 	if (actualTimeToExplode_<120) {
-		/*draw_bitmap_on_bitmap(bitmap_, det, bounding_.x - 10, bounding_.y - 10);*/
+		/*Display an icon showing the the button has been clicked
+		* when the count down has started
+		suggesting that the player has detonated the bomb*/
 		bitmap_ = load_bitmap("detonate", "Resources/detonate.png");
-		/*draw_bitmap("det", bounding_.x - 5, bounding_.y - 5);*/
 	}
-	
+	/*Display an icon showing the the button that has not been clicked*/
 	bitmap_= load_bitmap("detonator", "Resources/detonator.png");
 	
 	draw_bitmap(bitmap_, bounding_.x - 5, bounding_.y - 5);

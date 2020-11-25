@@ -8,10 +8,22 @@ f: [6-8], [6-8], 5, 6
 
 f: [9-11], [9-11], 5, 9
 
+f: [12-14], [12-14], 5, 12
+
+f: [15-17], [15-17], 5, 15
+
+f: [18-20], [18-20], 5, 18
+
+f: [21-23], [21-23], 5, 21
+
 i:walk up,0
 i:walk down,3
 i:walk left,6
 i:walk right,9
+i:p walk up,12
+i:p walk down,15
+i:p walk left,18
+i:p walk right,21
 
 
 
