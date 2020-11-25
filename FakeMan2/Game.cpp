@@ -269,6 +269,12 @@ void Game::updateMidGame()
 	// Processes keyboard input and checks Player collision with wall. Resets position to edge of wall depending on direction if collide
 	rectangle& playerBounding = player_->getBounding();
 
+	if (difficulty_ == Difficulty::Hard) {
+		if (rand() % 300 + 1 == 300) {
+			player_->dropBomb(bombs_);
+		}
+	}
+
 	if (key_down(LEFT_KEY))
 	{
 		player_->moveLeft();
