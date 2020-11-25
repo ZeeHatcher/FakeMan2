@@ -294,7 +294,7 @@ void Game::updateMidGame()
 
 		if (playerBounding.x < 0 - TILE_DIM)
 		{
-			player_->warp(MAP_WIDTH * TILE_DIM, 14 * TILE_DIM + 1);
+			player_->warp(MAP_WIDTH * TILE_DIM - 1, 14 * TILE_DIM + 1);
 		}
 	}
 
@@ -323,7 +323,7 @@ void Game::updateMidGame()
 
 		if (playerBounding.x > MAP_WIDTH * TILE_DIM)
 		{
-			player_->warp(0 - TILE_DIM, 14 * TILE_DIM + 1);
+			player_->warp(0 - TILE_DIM + 1, 14 * TILE_DIM + 1);
 		}
 	}
 
