@@ -6,6 +6,7 @@
 #include "Cell.h"
 #include "Collectible.h"
 #include "CollidableObject.h"
+#include "Difficulty.h"
 #include "Direction.h"
 #include "DrawableObject.h"
 #include "Enemy.h"
@@ -44,6 +45,7 @@ private :
 	
 	Player* player_;
 	Status status_;
+	Difficulty difficulty_;
 	std::vector<Bomb*> bombs_;
 	std::vector<std::vector<Cell*>> cells_;
 	std::vector<Collectible*> collectibles_;

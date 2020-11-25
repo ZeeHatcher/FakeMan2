@@ -401,7 +401,46 @@ void Game::updatePreGame()
 	// Start game key
 	if (key_typed(RETURN_KEY))
 	{
+		int speed;
+
+		switch (difficulty_)
+		{
+		case Difficulty::Easy:
+			speed = 1;
+			break;
+		case Difficulty::Normal:
+			speed = 2;
+			break;
+		case Difficulty::Hard:
+			speed = 3;
+			break;
+		}
+
+		int spawnX = MAP_WIDTH / 2 * TILE_DIM - TILE_DIM / 2;
+		int spawnY = 11 * TILE_DIM;
+
+		enemies_ = {
+			new Enemy(spawnX, spawnY, COLOR_MAGENTA, 1.5 * speed, 1),
+			new Enemy(spawnX, spawnY, COLOR_PURPLE, 1 * speed, 2),
+			new Enemy(spawnX, spawnY, COLOR_PURPLE, 1 * speed, 2)
+		};
+
 		status_ = Status::MidGame;
+	}
+
+	if (key_typed(NUM_1_KEY))
+	{
+		difficulty_ = Difficulty::Easy;
+	}
+
+	if (key_typed(NUM_2_KEY))
+	{
+		difficulty_ = Difficulty::Normal;
+	}
+
+	if (key_typed(NUM_3_KEY))
+	{
+		difficulty_ = Difficulty::Hard;
 	}
 }
 
@@ -471,12 +510,32 @@ void Game::draw()
 		{
 			case Status::PreGame:
 			{
+				string difficultyString;
+
+				switch (difficulty_)
+				{
+				case Difficulty::Easy:
+					difficultyString = "Easy";
+					break;
+				case Difficulty::Normal:
+					difficultyString = "Normal";
+					break;
+				case Difficulty::Hard:
+					difficultyString = "Hard";
+					break;
+				}
+
 				texts = {
 					"Welcome To FakeMan, the PacMan replica.",
 					"ARROW KEYS to move, SPACEBAR to drop Bombs when you have Ammo.",
 					"Collect all the drops to win.",
 					"Touching an Enemy or an Explosion tile will result in a Game Over.",
 					"Good luck and have fun!",
+					"",
+					"Press the corresponding keys to change the difficulty to",
+					"Easy (1), Normal (2), or Hard (3).",
+					"",
+					string("Selected difficulty: ").append(difficultyString),
 					"",
 					"Press the ENTER key to start..."
 				};
@@ -577,16 +636,9 @@ void Game::init()
 	initCells(MAP_WIDTH, MAP_HEIGHT);
     initMap();
 	initCollectibles();
-	int spawnX = MAP_WIDTH / 2 * TILE_DIM - TILE_DIM / 2;
-	int spawnY = 11 * TILE_DIM;
-
-	enemies_ = {
-		new Enemy(spawnX, spawnY, COLOR_MAGENTA, 3, 1),
-		new Enemy(spawnX, spawnY, COLOR_PURPLE, 2, 2),
-		new Enemy(spawnX, spawnY, COLOR_PURPLE, 2, 2)
-	};
 	player_ = new Player();
 	status_ = Status::PreGame;
+	difficulty_ = Difficulty::Normal;
 }
 
 // Initializes area of cells/tiles
