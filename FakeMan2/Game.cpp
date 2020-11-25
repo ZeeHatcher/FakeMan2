@@ -133,16 +133,9 @@ void Game::updateMidGame()
 		if (e->getAlive() == true)
 		{
 			// Checks if Enemy can change direction based on the "actualTimeToNextMove" counter
-			if (e->canMove())
-			{
-				e->chooseNextMove(borders_, walls_);
-				e->resetActualTimeToNextMove();
+			if (e->canMove(borders_, walls_)) {
+				e->chooseNextMove(player_->getBounding());
 			}
-			else
-			{
-				e->decrementActualTimeToNextMove();
-			}
-
 			e->move();
 
 			// Checks enemy collision with walls and borders. Reset position to the edge of wall depending on the direction if they collide
@@ -156,7 +149,6 @@ void Game::updateMidGame()
 					{
 						rectangle wallBounding = borders_[i]->getBounding();
 						e->warp(enemyBounding.x, wallBounding.y + wallBounding.height + 1);
-						e->skipActualTimeToNextMove();
 					}
 				}
 
@@ -166,7 +158,6 @@ void Game::updateMidGame()
 					{
 						rectangle wallBounding = walls_[i]->getBounding();
 						e->warp(enemyBounding.x, wallBounding.y + wallBounding.height + 1);
-						e->skipActualTimeToNextMove();
 					}
 				}
 
@@ -179,7 +170,6 @@ void Game::updateMidGame()
 					{
 						rectangle wallBounding = borders_[i]->getBounding();
 						e->warp(enemyBounding.x, wallBounding.y - enemyBounding.height - 1);
-						e->skipActualTimeToNextMove();
 					}
 				}
 
@@ -189,7 +179,6 @@ void Game::updateMidGame()
 					{
 						rectangle wallBounding = walls_[i]->getBounding();
 						e->warp(enemyBounding.x, wallBounding.y - enemyBounding.height - 1);
-						e->skipActualTimeToNextMove();
 					}
 				}
 
@@ -202,7 +191,6 @@ void Game::updateMidGame()
 					{
 						rectangle wallBounding = borders_[i]->getBounding();
 						e->warp(wallBounding.x + wallBounding.width + 1, enemyBounding.y);
-						e->skipActualTimeToNextMove();
 					}
 				}
 
@@ -212,7 +200,6 @@ void Game::updateMidGame()
 					{
 						rectangle wallBounding = walls_[i]->getBounding();
 						e->warp(wallBounding.x + wallBounding.width + 1, enemyBounding.y);
-						e->skipActualTimeToNextMove();
 					}
 				}
 
@@ -230,7 +217,6 @@ void Game::updateMidGame()
 					{
 						rectangle wallBounding = borders_[i]->getBounding();
 						e->warp(wallBounding.x - enemyBounding.width - 1, enemyBounding.y);
-						e->skipActualTimeToNextMove();
 					}
 				}
 
@@ -240,7 +226,6 @@ void Game::updateMidGame()
 					{
 						rectangle wallBounding = walls_[i]->getBounding();
 						e->warp(wallBounding.x - enemyBounding.width - 1, enemyBounding.y);
-						e->skipActualTimeToNextMove();
 					}
 				}
 

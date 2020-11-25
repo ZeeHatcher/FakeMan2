@@ -12,26 +12,20 @@ class Enemy
 {
 public :
 	Enemy(float x, float y, color col, float speed, int timeToNextMove);
-	bool canMove();
+	bool canMove(std::vector<Wall*>& borders, std::vector<Wall*>& walls);
 	bool canRespawn();
 	Direction getDirection();
-	int getTimeToNextMove();
-	int getTimeToRespawn();
-	void chooseNextMove(std::vector<Wall*>& borders, std::vector<Wall*>& walls);
-	void decrementActualTimeToNextMove();
+	void chooseNextMove(rectangle& playerBounding);
 	void decrementActualTimeToRespawn();
 	void die();
 	void draw();
 	void move();
-	void resetActualTimeToNextMove();
 	void respawn();
-	void skipActualTimeToNextMove();
 
 private :
 	Direction direction_;
-	int timeToNextMove_;
-	int actualTimeToNextMove_;
 	int timeToRespawn_;
 	int actualTimeToRespawn_;
 	point_2d respawnPos_;
+	std::vector<Direction> possibleDirections_;
 };
