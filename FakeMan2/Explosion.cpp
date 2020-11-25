@@ -1,4 +1,5 @@
 #include "Explosion.h"
+#include <iostream>
 
 Explosion::Explosion(float x, float y)
 	: CollidableObject(x, y, TILE_DIM, TILE_DIM, COLOR_ORANGE)
@@ -22,5 +23,7 @@ void Explosion::draw()
 {
 	/*fill_rectangle(color_, bounding_);*/
 	load_bitmap("explosion", "Resources/explosion.png");
-	draw_bitmap("explosion", bounding_.x-30, bounding_.y-15);
+	draw_bitmap("explosion", bounding_.x-50, bounding_.y-49.5);
+	/*printf(std::to_string(bounding_.x));*/
+	/*printf(bounding_.y);*/
 }
