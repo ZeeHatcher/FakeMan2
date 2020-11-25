@@ -15,7 +15,7 @@ public :
 	bool canMove(std::vector<Wall*>& borders, std::vector<Wall*>& walls);
 	bool canRespawn();
 	Direction getDirection();
-	void chooseNextMove(rectangle& playerBounding);
+	void chooseNextMove(rectangle& playerBounding, bool immortal);
 	void decrementActualTimeToRespawn();
 	void die();
 	void draw();

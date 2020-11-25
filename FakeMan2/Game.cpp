@@ -134,7 +134,7 @@ void Game::updateMidGame()
 		{
 			// Checks if Enemy can change direction based on the "actualTimeToNextMove" counter
 			if (e->canMove(borders_, walls_)) {
-				e->chooseNextMove(player_->getBounding());
+				e->chooseNextMove(player_->getBounding(), player_->immortal());
 			}
 			e->move();
 

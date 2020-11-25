@@ -12,7 +12,8 @@ Enemy::Enemy(float x, float y, color col, float speed, int timeToNextMove)
 	timeToRespawn_ = actualTimeToRespawn_ = 10 * 60;
 	direction_ = Direction::Null;
 	possibleDirections_ = {};
-	randomTimer_ = 4;
+	randomTimer_ = 0;
+	alive_ = false;
 }
 
 // Returns whether the Enemy can change direction
@@ -127,40 +128,41 @@ Direction Enemy::getDirection()
 }
 
 // Algorithm to choose next direction to move towards
-void Enemy::chooseNextMove(rectangle& playerBounding)
+void Enemy::chooseNextMove(rectangle& playerBounding, bool immortal)
 {
-	randomTimer_--;
-	if (randomTimer_ < 0) {
-		randomTimer_ = 4;
-		// If all other conditions fail, just go random
-		direction_ = possibleDirections_[rand() % possibleDirections_.size()];
-	}
-	
+	randomTimer_++;
+	// Fast ghosts don't chase
 	if (speed_ > 2) {
-		 return;
-	 }
-	
+		if (randomTimer_ % 4 == 0) {
+			direction_ = possibleDirections_[rand() % possibleDirections_.size()];
+			return;
+		}
+	}
+
+	// If all other conditions fail, just go random
+	direction_ = possibleDirections_[rand() % possibleDirections_.size()];
+
 	int dist = sqrt(pow((playerBounding.x - getBounding().x), 2) + pow((playerBounding.y - getBounding().y), 2));
-	if (dist < 500) {
+	if (!immortal) {
 		if (abs(playerBounding.x - getBounding().x) > abs(playerBounding.y - getBounding().y)) {
-			if (playerBounding.x < getBounding().x) {
+			if (playerBounding.x <= getBounding().x) {
 				if (std::find(possibleDirections_.begin(), possibleDirections_.end(), Direction::Left) != possibleDirections_.end()) {
 					direction_ = Direction::Left;
 				}
 			}
-			if (playerBounding.x > getBounding().x) {
+			if (playerBounding.x >= getBounding().x) {
 				if (std::find(possibleDirections_.begin(), possibleDirections_.end(), Direction::Right) != possibleDirections_.end()) {
 					direction_ = Direction::Right;
 				}
 			}
 		}
 		else {
-			if (playerBounding.y < getBounding().y) {
+			if (playerBounding.y <= getBounding().y) {
 				if (std::find(possibleDirections_.begin(), possibleDirections_.end(), Direction::Up) != possibleDirections_.end()) {
 					direction_ = Direction::Up;
 				}
 			}
-			if (playerBounding.y > getBounding().y) {
+			if (playerBounding.y >= getBounding().y) {
 				if (std::find(possibleDirections_.begin(), possibleDirections_.end(), Direction::Down) != possibleDirections_.end()) {
 					direction_ = Direction::Down;
 				}
@@ -168,22 +170,22 @@ void Enemy::chooseNextMove(rectangle& playerBounding)
 		}
 	}
 	else {
-		if (playerBounding.x < getBounding().x) {
+		if (playerBounding.x >= getBounding().x) {
 			if (std::find(possibleDirections_.begin(), possibleDirections_.end(), Direction::Left) != possibleDirections_.end()) {
 				direction_ = Direction::Left;
 			}
 		}
-		if (playerBounding.x > getBounding().x) {
+		if (playerBounding.x <= getBounding().x) {
 			if (std::find(possibleDirections_.begin(), possibleDirections_.end(), Direction::Right) != possibleDirections_.end()) {
 				direction_ = Direction::Right;
 			}
 		}
-		if (playerBounding.y < getBounding().y) {
+		if (playerBounding.y >= getBounding().y) {
 			if (std::find(possibleDirections_.begin(), possibleDirections_.end(), Direction::Up) != possibleDirections_.end()) {
 				direction_ = Direction::Up;
 			}
 		}
-		if (playerBounding.y > getBounding().y) {
+		if (playerBounding.y <= getBounding().y) {
 			if (std::find(possibleDirections_.begin(), possibleDirections_.end(), Direction::Down) != possibleDirections_.end()) {
 				direction_ = Direction::Down;
 			}
