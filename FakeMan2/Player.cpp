@@ -115,7 +115,8 @@ void Player::updateAnim() {
 }
 
 void Player::moveUp() {
-	//Load the animation labeled walk up in the animation script
+	/*check if pac man is immortal, which is achieved after eating the powerup food*/
+	/*assign a different animation to indicate that pac man is buffed*/
 	if (immortal()) {
 		if (animation_name(animation_) != "p walk up") {
 			assign_animation(animation_, "p walk up");
@@ -129,10 +130,8 @@ void Player::moveUp() {
 }
 
 void Player::moveLeft() {
-	//Load the animation labeled walk left in the animation script
-	/*if (animation_name(animation_) != "walk left") {
-		assign_animation(animation_, "walk left");
-	}*/
+	/*check if pac man is immortal, which is achieved after eating the powerup food*/
+	/*assign a different animation of same movement to indicate that pac man is buffed*/
 	if (immortal()) {
 		if (animation_name(animation_) != "p walk left") {
 			assign_animation(animation_, "p walk left");
@@ -146,10 +145,8 @@ void Player::moveLeft() {
 }
 
 void Player::moveDown() {
-	//Load the animation labeled walk down in the animation script
-	/*if (animation_name(animation_) != "walk down") {
-		assign_animation(animation_, "walk down");
-	}*/
+	/*check if pac man is immortal, which is achieved after eating the powerup food*/
+	/*assign a different animation to indicate that pac man is buffed*/
 	if (immortal()) {
 		if (animation_name(animation_) != "p walk down") {
 			assign_animation(animation_, "p walk down");
@@ -163,10 +160,8 @@ void Player::moveDown() {
 }
 
 void Player::moveRight() {
-	//Load the animation labeled walk right in the animation script
-	/*if (animation_name(animation_) != "walk right") {
-		assign_animation(animation_, "walk right");
-	}*/
+	/*check if pac man is immortal, which is achieved after eating the powerup food*/
+	/*assign a different animation to indicate that pac man is buffed*/
 	if (immortal()) {
 		if (animation_name(animation_) != "p walk right") {
 			assign_animation(animation_, "p walk right");

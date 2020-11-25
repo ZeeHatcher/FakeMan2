@@ -21,15 +21,8 @@ void Bomb::decrementActualTimeToExplode()
 
 void Bomb::draw()
 {
-	/*if (actualTimeToExplode_<120) {*/
-		/*Display an icon showing the the button has been clicked
-		* when the count down has started
-		suggesting that the player has detonated the bomb*/
-	load_bitmap("detonate", "Resources/detonate.png");
-	//}
 	///*Display an icon showing the the button that has not been clicked*/
-	//bitmap_= load_bitmap("detonator", "Resources/detonator.png");
-	
+	load_bitmap("detonate", "Resources/detonate.png");
 	draw_bitmap("detonate", bounding_.x - 5, bounding_.y - 5);
 }
 
