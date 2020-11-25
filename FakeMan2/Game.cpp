@@ -269,6 +269,13 @@ void Game::updateMidGame()
 	// Processes keyboard input and checks Player collision with wall. Resets position to edge of wall depending on direction if collide
 	rectangle& playerBounding = player_->getBounding();
 
+	if (difficulty_ == Difficulty::Hard) {
+		if (rand() % 300 + 1 == 300) {
+			bombs_.push_back(new Bomb(playerBounding.x, playerBounding.y));
+		}
+
+	}
+
 	if (key_down(LEFT_KEY))
 	{
 		player_->moveLeft();
@@ -635,6 +642,7 @@ void Game::init()
 	player_ = new Player();
 	status_ = Status::PreGame;
 	difficulty_ = Difficulty::Normal;
+
 }
 
 // Initializes area of cells/tiles
