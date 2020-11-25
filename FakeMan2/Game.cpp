@@ -424,10 +424,6 @@ void Game::draw()
 		walls_[i]->draw();
 	}
 
-	/*for (int i = 0; i < explosions_.size(); i++)
-	{
-		explosions_[i]->draw();
-	}*/
 
 	if (explosions_.size() > 1) {
 		explosions_[0]->draw();
