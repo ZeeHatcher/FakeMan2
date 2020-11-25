@@ -1,5 +1,6 @@
 #include "Enemy.h"
 #include <algorithm>
+#include<cmath>
 
 // Initializes Enemy at a specific part of the map
 // Width and height is "TILE_DIM - 2" to prevent collision with edge of walls
@@ -11,6 +12,7 @@ Enemy::Enemy(float x, float y, color col, float speed, int timeToNextMove)
 	timeToRespawn_ = actualTimeToRespawn_ = 10 * 60;
 	direction_ = Direction::Null;
 	possibleDirections_ = {};
+	randomTimer_ = 4;
 }
 
 // Returns whether the Enemy can change direction
@@ -127,15 +129,45 @@ Direction Enemy::getDirection()
 // Algorithm to choose next direction to move towards
 void Enemy::chooseNextMove(rectangle& playerBounding)
 {
-	
-	// If all other conditions fail, just go random
-	direction_ = possibleDirections_[rand() % possibleDirections_.size()];
+	randomTimer_--;
+	if (randomTimer_ < 0) {
+		randomTimer_ = 4;
+		// If all other conditions fail, just go random
+		direction_ = possibleDirections_[rand() % possibleDirections_.size()];
+	}
 	
 	if (speed_ > 2) {
 		 return;
 	 }
-
-	if (abs(playerBounding.x - getBounding().x) > abs(playerBounding.y - getBounding().y)) {
+	
+	int dist = sqrt(pow((playerBounding.x - getBounding().x), 2) + pow((playerBounding.y - getBounding().y), 2));
+	if (dist < 500) {
+		if (abs(playerBounding.x - getBounding().x) > abs(playerBounding.y - getBounding().y)) {
+			if (playerBounding.x < getBounding().x) {
+				if (std::find(possibleDirections_.begin(), possibleDirections_.end(), Direction::Left) != possibleDirections_.end()) {
+					direction_ = Direction::Left;
+				}
+			}
+			if (playerBounding.x > getBounding().x) {
+				if (std::find(possibleDirections_.begin(), possibleDirections_.end(), Direction::Right) != possibleDirections_.end()) {
+					direction_ = Direction::Right;
+				}
+			}
+		}
+		else {
+			if (playerBounding.y < getBounding().y) {
+				if (std::find(possibleDirections_.begin(), possibleDirections_.end(), Direction::Up) != possibleDirections_.end()) {
+					direction_ = Direction::Up;
+				}
+			}
+			if (playerBounding.y > getBounding().y) {
+				if (std::find(possibleDirections_.begin(), possibleDirections_.end(), Direction::Down) != possibleDirections_.end()) {
+					direction_ = Direction::Down;
+				}
+			}
+		}
+	}
+	else {
 		if (playerBounding.x < getBounding().x) {
 			if (std::find(possibleDirections_.begin(), possibleDirections_.end(), Direction::Left) != possibleDirections_.end()) {
 				direction_ = Direction::Left;
@@ -146,15 +178,15 @@ void Enemy::chooseNextMove(rectangle& playerBounding)
 				direction_ = Direction::Right;
 			}
 		}
-	}
-	if (playerBounding.y < getBounding().y) {
-		if (std::find(possibleDirections_.begin(), possibleDirections_.end(), Direction::Up) != possibleDirections_.end()) {
-			direction_ = Direction::Up;
+		if (playerBounding.y < getBounding().y) {
+			if (std::find(possibleDirections_.begin(), possibleDirections_.end(), Direction::Up) != possibleDirections_.end()) {
+				direction_ = Direction::Up;
+			}
 		}
-	}
-	if (playerBounding.y > getBounding().y) {
-		if (std::find(possibleDirections_.begin(), possibleDirections_.end(), Direction::Down) != possibleDirections_.end()) {
-			direction_ = Direction::Down;
+		if (playerBounding.y > getBounding().y) {
+			if (std::find(possibleDirections_.begin(), possibleDirections_.end(), Direction::Down) != possibleDirections_.end()) {
+				direction_ = Direction::Down;
+			}
 		}
 	}
 }

@@ -28,4 +28,5 @@ private :
 	int actualTimeToRespawn_;
 	point_2d respawnPos_;
 	std::vector<Direction> possibleDirections_;
+	int randomTimer_;
 };
