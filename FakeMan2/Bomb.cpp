@@ -93,7 +93,9 @@ void Bomb::explode(std::vector<std::vector<Cell*>>& cells, std::vector<Wall*>& w
 
 			if (diff <= explosionRadius_)
 			{
-				explosions.push_back(new Explosion(bounding_.x, bounding_.y));
+				bool isDraw = (std::abs(refCellBounding.x - cellBounding.x) < 1 && std::abs(refCellBounding.y - cellBounding.y) < 1);
+
+				explosions.push_back(new Explosion(cellBounding.x, cellBounding.y, isDraw));
 			}
 		}
 	}

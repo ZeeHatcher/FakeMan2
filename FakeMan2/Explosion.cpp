@@ -1,10 +1,11 @@
 #include "Explosion.h"
 #include <iostream>
 
-Explosion::Explosion(float x, float y)
+Explosion::Explosion(float x, float y, bool isDraw)
 	: CollidableObject(x, y, TILE_DIM, TILE_DIM, COLOR_ORANGE)
 {
 	actualTimeToDissipate_ = 10;
+	isDraw_ = isDraw;
 }
 
 // Returns whether the Explosion can "disappear"
@@ -21,9 +22,9 @@ void Explosion::decrementActualTimeToDissipate()
 
 void Explosion::draw()
 {
-	/*fill_rectangle(color_, bounding_);*/
-	load_bitmap("explosion", "Resources/explosion.png");
-	draw_bitmap("explosion", bounding_.x-50, bounding_.y-49.5);
-	/*printf(std::to_string(bounding_.x));*/
-	/*printf(bounding_.y);*/
+	if (isDraw_)
+	{
+		bitmap bmp = load_bitmap("explosion", "Resources/explosion.png");
+		draw_bitmap("explosion", bounding_.x - bitmap_width(bmp) / 2 + TILE_DIM / 2, bounding_.y - bitmap_height(bmp) / 2 + TILE_DIM / 2);
+	}
 }

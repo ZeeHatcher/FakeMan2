@@ -43,6 +43,7 @@
     <ClInclude Include="Cell.h" />
     <ClInclude Include="Collectible.h" />
     <ClInclude Include="CollidableObject.h" />
+    <ClInclude Include="Difficulty.h" />
     <ClInclude Include="Dimensions.h" />
     <ClInclude Include="Direction.h" />
     <ClInclude Include="DrawableObject.h" />

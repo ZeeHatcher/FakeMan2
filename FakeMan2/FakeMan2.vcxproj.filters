@@ -125,5 +125,8 @@
     <ClInclude Include="Powerup.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Difficulty.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
