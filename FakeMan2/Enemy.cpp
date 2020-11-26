@@ -1,6 +1,7 @@
 #include "Enemy.h"
 #include <algorithm>
 #include <cmath>
+#include <iostream>
 
 // Initializes Enemy at a specific part of the map
 // Width and height is "TILE_DIM - 2" to prevent collision with edge of walls
@@ -130,13 +131,15 @@ Direction Enemy::getDirection()
 // Algorithm to choose next direction to move towards
 void Enemy::chooseNextMove(rectangle& playerBounding, bool immortal)
 {
+	
 	randomTimer_++;
 	// Fast ghosts don't chase
 	if (speed_ > 2) {
 		if (randomTimer_ % 4 == 0) {
 			direction_ = possibleDirections_[rand() % possibleDirections_.size()];
-			return;
+			
 		}
+		return;
 	}
 
 	// If all other conditions fail, just go random
