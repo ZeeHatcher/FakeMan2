@@ -85,7 +85,7 @@ void GameObjectTest::testExplosionConstructor()
 	}
 }
 
-void GameObjectTest::testPlayerDifferBitmap()
+/*void GameObjectTest::testPlayerDifferBitmap()
 {
 	std::cout << "testPlayerDifferBitmap: ";
 
@@ -103,6 +103,6 @@ void GameObjectTest::testPlayerDifferBitmap()
 	catch (...)
 	{
 		std::cout << "Failed" << std::endl;
-	}
+	*/}
 }
 
