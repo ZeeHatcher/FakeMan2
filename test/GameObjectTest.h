@@ -5,6 +5,7 @@
 #include "Enemy.h"
 #include "Cell.h"
 #include "Explosion.h"
+#include "Player.h"
 
 class GameObjectTest
 {
