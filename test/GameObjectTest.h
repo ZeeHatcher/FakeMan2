@@ -15,5 +15,8 @@ public :
 	static void testCellConstructor();
 	static void testEnemyConstructor();
 	static void testExplosionConstructor();
-	/*static void testPlayerDifferBitmap();*/
+	static void testPlayerInitAnimation();
+	static void testPlayerImmortalAnimation();
+	static void testPlayerMoveAnimation();
+
 };

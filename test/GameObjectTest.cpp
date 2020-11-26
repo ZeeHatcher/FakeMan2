@@ -85,24 +85,66 @@ void GameObjectTest::testExplosionConstructor()
 	}
 }
 
-/*void GameObjectTest::testPlayerDifferBitmap()
+void GameObjectTest::testPlayerMoveAnimation()
 {
-	std::cout << "testPlayerDifferBitmap: ";
+	std::cout << "testPlayerMoveAnimation: ";
 
 	try
 	{
-		Player* player();
-		player->immortalize();
-		player->moveLeft();
-		if (animation_name(player.animation_) != "p walk left") {
+		player* player();
+		player->moveRight();
+		player->Draw();
+		if (animation_name(player.animation_) != "walk right") {
 			throw;
 		}
 
-		std::cout << "Successful" << std::endl;
+		std::cout << "successful" << std::endl;
 	}
 	catch (...)
 	{
-		std::cout << "Failed" << std::endl;
-	*/}
+		std::cout << "failed" << std::endl;
+	}
+}
+
+void GameObjectTest::testPlayerInitAnimation()
+{
+	std::cout << "testPlayerMoveAnimation: ";
+
+	try
+	{
+		player* player();
+		player->Draw();
+		if (animation_name(player.animation_) != "walk left") {
+			throw;
+		}
+
+		std::cout << "successful" << std::endl;
+	}
+	catch (...)
+	{
+		std::cout << "failed" << std::endl;
+	}
+}
+
+void GameObjectTest::testPlayerImmortalAnimation()
+{
+	std::cout << "testPlayerImmortalAnimation: ";
+
+	try
+	{
+		player* player();
+		player->immortalize();
+		player->moveRight();
+		player->Draw();
+		if (animation_name(player.animation_) != "p walk right") {
+			throw;
+		}
+
+		std::cout << "successful" << std::endl;
+	}
+	catch (...)
+	{
+		std::cout << "failed" << std::endl;
+	}
 }
 
