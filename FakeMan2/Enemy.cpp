@@ -81,6 +81,11 @@ bool Enemy::canMove(std::vector<Wall*>& borders, std::vector<Wall*>& walls)
 		bounding_ = origBounding;
 	}
 
+	// Can move from spawn
+	if (getBounding().x == respawnPos_.x && getBounding().y == respawnPos_.y) {
+		possibleDirections_ = directions;
+		return true;
+	}
 
 	// Count how many paths are available
 	int openPaths = directions.size();
@@ -112,7 +117,11 @@ bool Enemy::canMove(std::vector<Wall*>& borders, std::vector<Wall*>& walls)
 		possibleDirections_ = directions;
 		return true;
 	}
-
+	if (openPaths == 1) 
+	{
+		possibleDirections_ = directions;
+		return true;
+	}
 	return false;
 }
 
@@ -148,22 +157,22 @@ void Enemy::chooseNextMove(rectangle& playerBounding, bool immortal)
 	int dist = sqrt(pow((playerBounding.x - getBounding().x), 2) + pow((playerBounding.y - getBounding().y), 2));
 	std::vector<Direction> directions = {};
 	if (!immortal) {
-		if (playerBounding.x <= getBounding().x) {
+		if (playerBounding.x - getBounding().x <= 10) {
 			if (std::find(possibleDirections_.begin(), possibleDirections_.end(), Direction::Left) != possibleDirections_.end()) {
 				directions.push_back(Direction::Left);
 			}
 		}
-		if (playerBounding.x >= getBounding().x) {
+		if (playerBounding.x - getBounding().x >= 10) {
 			if (std::find(possibleDirections_.begin(), possibleDirections_.end(), Direction::Right) != possibleDirections_.end()) {
 				directions.push_back(Direction::Right);
 			}
 		}
-		if (playerBounding.y <= getBounding().y) {
+		if (playerBounding.y - getBounding().y <= 10) {
 			if (std::find(possibleDirections_.begin(), possibleDirections_.end(), Direction::Up) != possibleDirections_.end()) {
 				directions.push_back(direction_ = Direction::Up);
 			}
 		}
-		if (playerBounding.y >= getBounding().y) {
+		if (playerBounding.y - getBounding().y >= 10) {
 			if (std::find(possibleDirections_.begin(), possibleDirections_.end(), Direction::Down) != possibleDirections_.end()) {
 				directions.push_back(Direction::Down);
 			}
