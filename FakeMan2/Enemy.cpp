@@ -86,7 +86,7 @@ bool Enemy::canMove(std::vector<Wall*>& borders, std::vector<Wall*>& walls)
 	int openPaths = directions.size();
 
 	// Intersection
-	if (openPaths >= 3) {
+	if (openPaths == 3) {
 		// Get invert direction of direction
 		switch (getDirection()) {
 			case Direction::Up:
