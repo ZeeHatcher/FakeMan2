@@ -84,3 +84,24 @@ void GameObjectTest::testExplosionConstructor()
 		std::cout << "Failed" << std::endl;
 	}
 }
+
+void GameObjectTest::testPlayerDifferBitmap()
+{
+	std::cout << "testPlayerDifferBitmap: ";
+
+	try
+	{
+		Player* player();
+		player->immortalize();
+		if (animation_name(player.animation_) != "p walk left") {
+			throw;
+		}
+
+		std::cout << "Successful" << std::endl;
+	}
+	catch (...)
+	{
+		std::cout << "Failed" << std::endl;
+	}
+}
+

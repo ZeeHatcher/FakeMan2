@@ -14,4 +14,5 @@ public :
 	static void testCellConstructor();
 	static void testEnemyConstructor();
 	static void testExplosionConstructor();
+	static void testPlayerDifferBitmap();
 };
