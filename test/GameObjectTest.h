@@ -6,6 +6,7 @@
 #include "Cell.h"
 #include "Explosion.h"
 #include "Player.h"
+#include "splashkit.h"
 
 class GameObjectTest
 {

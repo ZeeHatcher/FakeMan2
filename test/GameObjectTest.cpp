@@ -93,6 +93,7 @@ void GameObjectTest::testPlayerDifferBitmap()
 	{
 		Player* player();
 		player->immortalize();
+		player->moveLeft();
 		if (animation_name(player.animation_) != "p walk left") {
 			throw;
 		}
