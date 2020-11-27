@@ -148,3 +148,70 @@ void GameObjectTest::testPlayerImmortalAnimation()
 	}
 }
 
+void GameObjectTest::testPlayerImmortal()
+{
+	std::cout << "testPlayerImmortal: ";
+
+	try
+	{
+        Player* player();
+
+        if (player->immortal() != false)
+        {
+            throw;
+        }
+
+		std::cout << "Successful" << std::endl;
+	}
+	catch (...)
+	{
+		std::cout << "Failed" << std::endl;
+	}
+}
+
+void GameObjectTest::testPlayerImmortalize()
+{
+	std::cout << "testPlayerImmortalize: ";
+
+	try
+	{
+        Player* player();
+
+        player->immortalize();
+
+        if (player->immortal() != true)
+        {
+            throw;
+        }
+
+		std::cout << "Successful" << std::endl;
+	}
+	catch (...)
+	{
+		std::cout << "Failed" << std::endl;
+	}
+}
+
+void GameObjectTest::testPowerupCollect()
+{
+	std::cout << "testPowerupCollect: ";
+
+	try
+	{
+        Player* player();
+        Powerup* powerup(0, 0);
+
+        powerup->collect(player);
+
+        if (player->immortal() != true)
+        {
+            throw;
+        }
+
+		std::cout << "Successful" << std::endl;
+	}
+	catch (...)
+	{
+		std::cout << "Failed" << std::endl;
+	}
+}
