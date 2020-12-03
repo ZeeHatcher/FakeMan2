@@ -74,7 +74,7 @@ void GameObjectTest::testExplosionConstructor()
 
 	try
 	{
-		Explosion explosion(10, 20);
+		Explosion explosion(10, 20, false);
 		GameObject obj = (GameObject)explosion;
 
 		std::cout << "Successful" << std::endl;
@@ -91,10 +91,10 @@ void GameObjectTest::testPlayerMoveAnimation()
 
 	try
 	{
-		player* player();
+		Player* player = new Player();
 		player->moveRight();
-		player->Draw();
-		if (animation_name(player.animation_) != "walk right") {
+		player->draw();
+		if (animation_name(player->getAnimation()) != "walk right") {
 			throw;
 		}
 
@@ -112,9 +112,9 @@ void GameObjectTest::testPlayerInitAnimation()
 
 	try
 	{
-		player* player();
-		player->Draw();
-		if (animation_name(player.animation_) != "walk left") {
+		Player* player = new Player();
+		player->draw();
+		if (animation_name(player->getAnimation()) != "walk left") {
 			throw;
 		}
 
@@ -132,11 +132,11 @@ void GameObjectTest::testPlayerImmortalAnimation()
 
 	try
 	{
-		player* player();
+		Player* player = new Player();
 		player->immortalize();
 		player->moveRight();
-		player->Draw();
-		if (animation_name(player.animation_) != "p walk right") {
+		player->draw();
+		if (animation_name(player->getAnimation()) != "p walk right") {
 			throw;
 		}
 
@@ -154,7 +154,7 @@ void GameObjectTest::testPlayerImmortal()
 
 	try
 	{
-        Player* player();
+        Player* player = new Player();
 
         if (player->immortal() != false)
         {
@@ -175,7 +175,7 @@ void GameObjectTest::testPlayerImmortalize()
 
 	try
 	{
-        Player* player();
+        Player* player = new Player();
 
         player->immortalize();
 
@@ -198,8 +198,8 @@ void GameObjectTest::testPowerupCollect()
 
 	try
 	{
-        Player* player();
-        Powerup* powerup(0, 0);
+        Player* player = new Player();
+        Powerup* powerup = new Powerup(0, 0);
 
         powerup->collect(player);
 

@@ -6,10 +6,7 @@
 #include "Cell.h"
 #include "Explosion.h"
 #include "Player.h"
-<<<<<<< Updated upstream
-=======
 #include "Powerup.h"
->>>>>>> Stashed changes
 
 class GameObjectTest
 {

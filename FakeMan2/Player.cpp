@@ -37,6 +37,11 @@ int Player::getAmmo()
 	return ammo_;
 }
 
+animation Player::getAnimation()
+{
+        return animation_;
+}
+
 // Returns current score of Player
 int Player::getScore()
 {

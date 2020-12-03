@@ -14,6 +14,7 @@ public :
 	bool immortal();
 	int getAmmo();
 	int getScore();
+        animation getAnimation();
 	void decrementTimeImmortal();
 	void deimmortalize();
 	void immortalize();
