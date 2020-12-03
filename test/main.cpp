@@ -12,4 +12,10 @@ int main()
   runner.testCellConstructor();
   runner.testEnemyConstructor();
   runner.testExplosionConstructor();
+  runner.testPlayerMoveAnimation();
+  runner.testPlayerInitAnimation();
+  runner.testPlayerImmortalAnimation();
+  runner.testPlayerImmortal();
+  runner.testPlayerImmortalize();
+  runner.testPowerupCollect();
 }
