@@ -93,12 +93,11 @@ void GameObjectTest::testPlayerMoveAnimation()
 	{
 		Player* player = new Player();
 		player->moveRight();
-		player->draw();
 		if (animation_name(player->getAnimation()) != "walk right") {
 			throw;
 		}
 
-		std::cout << "successful" << std::endl;
+		std::cout << "Successful" << std::endl;
 	}
 	catch (...)
 	{
@@ -108,17 +107,16 @@ void GameObjectTest::testPlayerMoveAnimation()
 
 void GameObjectTest::testPlayerInitAnimation()
 {
-	std::cout << "testPlayerMoveAnimation: ";
+	std::cout << "testPlayerInitAnimation: ";
 
 	try
 	{
 		Player* player = new Player();
-		player->draw();
 		if (animation_name(player->getAnimation()) != "walk left") {
 			throw;
 		}
 
-		std::cout << "successful" << std::endl;
+		std::cout << "Successful" << std::endl;
 	}
 	catch (...)
 	{
@@ -135,12 +133,11 @@ void GameObjectTest::testPlayerImmortalAnimation()
 		Player* player = new Player();
 		player->immortalize();
 		player->moveRight();
-		player->draw();
 		if (animation_name(player->getAnimation()) != "p walk right") {
 			throw;
 		}
 
-		std::cout << "successful" << std::endl;
+		std::cout << "Successful" << std::endl;
 	}
 	catch (...)
 	{
